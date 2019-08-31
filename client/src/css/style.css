@@ -1,0 +1,7 @@
+
+@media only screen and (max-width: 400px) {
+    div#imgDiv { 
+       background-image: none!important;
+    }
+  }
+
