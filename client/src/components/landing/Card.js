@@ -26,7 +26,7 @@ function getImage(id) {
 
 export default ({ input, id, label, cImage, cText, forward, btnTxt, size}) => {
 	return (
-		<div class="col s9 m9 l4 xl4">
+		<div className="col s9 m9 l4 xl4">
 				<div className="card blue darken-1 white-text" key={id}>
                     <div className="card-image">
                         <img style={imgStyle} src={getImage(id)} />

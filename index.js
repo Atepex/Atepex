@@ -8,7 +8,11 @@ require('./models/User');
 require('./services/passport');
 
 
-mongoose.connect(keys.mongoURI);
+//mongoose.connect(keys.mongoURI);
+mongoose.connect(keys.mongoURI, () => { }, { useNewUrlParser: true })
+    .catch(err => {
+        console.log(err);
+    });
 
 const app = express();
 
