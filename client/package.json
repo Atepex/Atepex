@@ -26,6 +26,7 @@
     "redux": "^4.0.4",
     "redux-form": "^8.1.0",
     "redux-thunk": "^2.3.0",
+    "sendgrid": "^5.2.3",
     "slick-carousel": "^1.8.1"
   },
   "scripts": {
@@ -37,18 +38,7 @@
   "eslintConfig": {
     "extends": "react-app"
   },
-  "browserslist": {
-    "production": [
-      ">0.2%",
-      "not dead",
-      "not op_mini all"
-    ],
-    "development": [
-      "last 1 chrome version",
-      "last 1 firefox version",
-      "last 1 safari version"
-    ]
-  },
+  "browserslist": [],
   "devDependencies": {
     "@fortawesome/fontawesome-free": "^5.10.1"
   }
