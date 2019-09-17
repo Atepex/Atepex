@@ -8,7 +8,8 @@ const p3 = 'We serve both residential and light commercial clients and offer a v
 
 
 export default [
-	{ id: 3, label: 'Customer Satisfaction Guaranteed', btnTxt:'Contact Us', forward:'/ContactUs', cText:'Whether you need a routine maintenance check or an emergency repair on a heating or cooling unit, we are available to handle  all of your all of your heating, cooling and ventilation needs.  We continually strive to exceed expectations by ensuring that each  client receives the very best service.' },
 	{ id: 1, label: 'Reliable HVAC Professionalism', btnTxt:'About Us', forward:'/AboutUs', cText:'Whether you need a routine maintenance check or an emergency repair on a heating or cooling unit, we are available to handle  all of your all of your heating, cooling and ventilation needs.  We continually strive to exceed expectations by ensuring that each  client receives the very best service.'},
-	{ id: 2, label: 'Individualized HVAC Options Just For You', btnTxt:'Services', forward:'/Services', cText:'Whether you need a routine maintenance check or an emergency repair on a heating or cooling unit, we are available to handle  all of your all of your heating, cooling and ventilation needs.  We continually strive to exceed expectations by ensuring that each  client receives the very best service.' },
+	{ id: 3, label: 'Individualized HVAC Options Just For You', btnTxt:'Services', forward:'/Services', cText:'Whether you need a routine maintenance check or an emergency repair on a heating or cooling unit, we are available to handle  all of your all of your heating, cooling and ventilation needs.  We continually strive to exceed expectations by ensuring that each  client receives the very best service.' },
+	{ id: 2, label: 'Customer Satisfaction Guaranteed', btnTxt:'Contact Us', forward:'/ContactUs', cText:'Whether you need a routine maintenance check or an emergency repair on a heating or cooling unit, we are available to handle  all of your all of your heating, cooling and ventilation needs.  We continually strive to exceed expectations by ensuring that each  client receives the very best service.' },
+	
 ];

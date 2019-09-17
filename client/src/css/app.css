@@ -1,39 +1,61 @@
-header.smaller {
-    height: 75px;
+
+h1, h2, h3, h4, h5, h6 {
+	line-height: 1;
+	font-weight: 100;
+	color: red;
 }
 
-header.smaller img#logo {
-	width: 250px;
-	height: 70px;
+/* Navbar */
+
+nav {
+	border-bottom:solid 0.5em #2172c4;
+	background-color: white;
+}
+.logo {
+	width: 193px;
+	height: 125x;
 	line-height: 55px;
 	font-size: 55px;
 	margin: 0;
 }
 
-header.smaller navbarbar a {
-	line-height: 75px;
+.name {
+	display: none;
 }
 
-*,
-*:before,
-*:after {
-	-webkit-box-sizing: border-box;
-	-moz-box-sizing: border-box;
-	box-sizing: border-box;
+.navbar-collapse.collapse.show {
+	background-color: #2172c4;
 }
+ 
+.nav-link {
+	color: white !important;
+}
+
+.nav-link:hover {
+	color: #3c3c3c !important;
+}
+
+
+/*Main body */
 
 body {
 	color: #505050;
 	font-family: "Open Sans", sans-serif;
 	font-weight: 300;
 	font-size: 16px;
-    line-height: 1.8;
+	line-height: 1.8;
+	min-width: 320px !important;
+}
+#wrapper {
+
+	width: 100%;
+	margin: 0 auto;
 }
 
-h1, h2, h3, h4, h5, h6 {
-	line-height: 1;
-	font-weight: 100;
-	color: #77C7AC;
+#main {
+	background-color: #fff;
+	padding-top: 115px;
+  	min-height:500px;
 }
 
 a {
@@ -45,24 +67,6 @@ a {
 a:hover {
 	color: #3c3c3c;
 }
-
-#wrapper {
-	width: 100%;
-	margin: 0 auto;
-}
-
-#main {
-	background-color: #fff;
-	padding-top: 150px;
-  min-height:500px;
-}
-
-.container {
-	width: 80%;
-	margin: 0 auto;
-	padding: 0 30px;
-}
-
 
 section {
 	padding: 60px 0;
@@ -85,70 +89,24 @@ section.color {
 	background-color: #f4f4f4;
 }
 
-header {
+/* Jumbotron */
+
+.jumbo {
+	background-image: url(http://img1.wsimg.com/isteam/ip/97959f7c-8512-4f75-82d9-1ad2cbd2281a/2741c23d-dbaf-4834-85fc-92305a20cf76.JPG);
+	background-size: cover;
+	height: 80vh;
+	background-repeat: no-repeat;
+	display: block;
 	width: 100%;
-	height: 12Em;
-	overflow: hidden;
-	position: fixed;
-	top: 0;
-	left: 0;
-	z-index: 999;
-  border-bottom:solid 0.5em #2172c4;
-    background-color: white;
-	transition: height 0.3s;
 }
 
-header img#logo {
-	display: inline-block;
-	line-height:5em;
-   margin: 0;
-   padding:0 1em;
-   height: auto;
-   /*background-color:#fd5559;*/
-	float: left;
-	-webkit-transition: all 0.4s;
-	-moz-transition: all 0.4s;
-	-ms-transition: all 0.4s;
-	-o-transition: all 0.4s;
-	transition: all 0.4s;
+#schedule-card {
+	display: table;
+	margin: 0 auto;
+	width: 50% !important;
 }
 
-header navbar {
-	display: inline-block;
-    float: right;
-}
-
-header navbar a {
-	line-height: 150px;
-	margin-left: 20px;
-	color: black;
-	font-weight: 300;
-	font-size: 1em;
-	-webkit-transition: all 0.3s;
-	-moz-transition: all 0.3s;
-	-ms-transition: all 0.3s;
-	-o-transition: all 0.3s;
-	transition: all 0.3s;
-}
-
-header navbar a:hover {
-	color: #fd5559;
-}
-
-header.smaller {
-	height: 75px;
-}
-
-header.smaller img#logo {
-	line-height: 75px;
-	font-size: 30px;
-}
-
-
-header.smaller navbar a {
-	margin-top: 5px;
-	line-height: 35px;
-}
+/* Footer */
 
 footer {
 	background-color: #3c3c3c;
@@ -208,74 +166,50 @@ footer ul li {
 	height: 0;
 }
 
-@media all and (max-width: 760px) {
-	header img#logo {
-		display: block;
-		float: none;
-		margin: 0 auto;
-		height: 100px;     
-		line-height: 80px;
-		text-align: center;
+/* contact us */
+.review-label {
+	color: #2172c4;
+}
+
+/* Screen Size */
+@media all and (min-width: 992px) {
+	.navbar-collapse.collapse.show {
+		background-color: white;
 	}
 
-	header navbar {
-		display: block;
-		float: none;
+	.nav-link {
+		color:#2172c4 !important;
+	}
+	
+	.nav-link:hover {
+		color: red !important;
+	}
+	
+}
+
+@media all and (max-width: 992px) {
+	.logo {
+		width: 78px;
 		height: 50px;
-		text-align: center;
-		margin: 0 auto;
+		line-height: 55px;
+		font-size: 55px;
+		margin: 0;
 	}
-
-	header navbar a {
-		line-height: 50px;
-		margin: 0 10px;
-	}
-
-	header.smaller {
-		height: 75px;
-	}
-
-	header.smaller img#logo {
-		height: 40px;
-		line-height: 40px;
-		font-size: 30px;
-     width:100%;
-	}
-
-	header.smaller navbar {
-		height: 35px;
-	}
-
-	header.smaller navbar a {
-		line-height: px;
-	}
-
-
-  footer div.col {
-    width:100%;
-    display:inline-block;
-    vertical-align: top;
-  }
-  footer ul li {
-    display:inline-block;
-    margin:0 0.5em;
-    float:left;
-  }
-
-}
-
-div#signup:hover, div#login:hover {
-	color: red;
-}
-
-
-@media all and (max-width: 600px) {
-	.container {
-		width: 100%;
-	}
-
-	footer a {
-		display: block;
+	
+	.name {
+		display: inline;
+		padding: 10px;
+		font-weight: bold;
 	}
 }
 
+@media all and (max-width: 487px) {
+	.name {
+		display: none;
+	}
+
+	.jumbo {
+		background-image: none;
+		background-color: #3c3c3c;
+	}
+}

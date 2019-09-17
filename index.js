@@ -5,6 +5,8 @@ const cookieSession = require('cookie-session');
 const passport = require('passport');
 const bodyParser = require('body-parser');
 require('./models/User');
+require('./models/SystemSettings');
+require('./models/Contact');
 require('./services/passport');
 
 
@@ -28,6 +30,8 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 require('./routes/authRoutes')(app);
+require('./routes/settingRoutes')(app);
+
 
 if (process.env.NODE_ENV === 'production') {
 	app.use(express.static('client/build'));

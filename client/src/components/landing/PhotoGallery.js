@@ -24,13 +24,8 @@ const headerStyle = {
 class PhotoGallery extends Component {
     renderFields() {
 		return _.map(photoObjFields, ({ id, label, imgSrc }) => {
-            const element = {
-                k: id,
-                lbl: label,
-                sr: imgSrc
-            };
 			return (
-                <div><img style={imgStyle} src={imgSrc} />{label}</div>
+                <div key={id}><img key={id} style={imgStyle} src={imgSrc} />{label}</div>
             );
 		});
     }

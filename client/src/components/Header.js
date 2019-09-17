@@ -1,85 +1,64 @@
-import React, { Component } from 'react';
+import React, { Component } from "react";
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
-import logo from '../images/logo.png';
+import logo from "../images/logo.png";
+import { Navbar, Nav, Img } from "react-bootstrap";
+import 'bootstrap/dist/css/bootstrap.min.css';
 import '../css/app.css';
-import { withGetScreen } from 'react-getscreen';
-import * as actions from '../actions/index';
+import { SocialIcon } from 'react-social-icons';
 
-
-
-const btnStyle = {
-	textAlign: 'center',
-	marginLeft: '10px'
+const imgStyle = {
+	height: '30px', 
+	width: '30px',
+	marginRight: '5px'
+};
+const navStyle = {
+  backgroundColor:'red',
 };
 
+
 class Header extends Component {
-	componentDidMount() {
-		window.addEventListener('scroll', this.resizeHeaderOnScroll);
-	}
-	resizeHeaderOnScroll() {
-		const distanceY = window.pageYOffset || document.documentElement.scrollTop,
-			shrinkOn = 200,
-			headerEl = document.getElementById('js-header');
 
-		//window.innerWidth
-		if (distanceY > shrinkOn && window.innerWidth > 700) {
-			headerEl.classList.add('smaller');
-		} else {
-			headerEl.classList.remove('smaller');
-		}
-	}
-
-
-	renderContent() {
-		switch (this.props.auth) {
+  renderContent() {
+    switch (this.props.auth) {
 			case null:
 				return;
 			case false:
 				return [
-					<Link to="/Login">
-						<div id="login" className="btn blue darken-1" style={btnStyle}>
-							<i className="material-icons left">person</i>
-							Login
-						</div>
-					</Link>,
-					<Link to="/signup">
-					<div id="signup" className="btn blue darken-1" style={btnStyle}>
-						<i className="material-icons left">person</i>
-						Sign Up
-					</div>
-				</Link>,
-
+					<Nav.Link key='5' href="/auth/google">
+              <SocialIcon network="google" style={imgStyle}/>
+						  Login With Google
+            </Nav.Link>
 				];
 			default:
 				return (
-						<a id="signout" className="btn blue darken-1" style={btnStyle} href="/api/logout">
-							<i className="material-icons left">person</i>
-							Sign Out
-						</a>
+          <Nav.Link key='6' href="/api/logout">
+            Logout
+          </Nav.Link>
 				);
 		}
-	}
+  }
 
-	render() {
-		return (
-			<header id="js-header">
-				<div className="container clearfix">
-					<Link to="/">
-						<img id="logo" src={logo} />
-					</Link>
-					<navbar>
-						<Link to="/">Home</Link>
-						<Link to="/Services">Services</Link>
-						<Link to="/ContactUs">Contact Us</Link>
-						<Link to="/AboutUs">About Us</Link>
-						{this.renderContent()}
-					</navbar>
-				
-				</div>
-			</header>
-		);
-	}
+  render() {
+    return (
+      <Navbar fixed="top" bg="lt" expand="lg">
+        <Navbar.Brand href="/">
+          <img className="logo" src={logo} />
+          <h5 className="name">VAUGHN'S A/C &amp; HEATING</h5>
+        </Navbar.Brand>
+        <Navbar.Toggle aria-controls="basic-navbar-nav" />
+        <Navbar.Collapse id="basic-navbar-nav">
+          <Nav className="ml-auto">
+            <Nav.Link key='1' href="/">Home</Nav.Link>
+            <Nav.Link key='2' href="/Services">Services</Nav.Link>
+            <Nav.Link key='3' href="/ContactUs">Contact Us</Nav.Link>
+            <Nav.Link key='4' href="/AboutUs">About Us</Nav.Link>
+            { this.renderContent() }
+          </Nav>
+        </Navbar.Collapse>
+      </Navbar>
+    );
+  }
 }
 
 function mapStateToProps({ auth }) {
@@ -87,3 +66,4 @@ function mapStateToProps({ auth }) {
 }
 
 export default connect(mapStateToProps)(Header);
+

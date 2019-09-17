@@ -3,6 +3,7 @@ import React, { Component } from 'react';
 import cardFields from './cardFields';
 import Card from './Card';
 import img1 from '../../images/photo3.jpeg';
+import { CardDeck } from 'react-bootstrap';
 
 const cardsStyle = {
     display: '-webkit-flex',
@@ -34,9 +35,10 @@ class Cards extends Component {
     
 	render() {
 		return (
-                
                 <div  className="row">
-                    {this.renderFields()}
+					<CardDeck>
+					{this.renderFields()}
+					</CardDeck>
                 </div>
 		);
 	}

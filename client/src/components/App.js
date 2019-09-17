@@ -8,7 +8,7 @@ import Landing from './landing/Landing';
 import Dashboard from './Dashboard';
 import Footer from './Footer';
 import Credentials from './credentials/Credentials';
-import ContactUs from './landing/ContactUs';
+import ContactUs from './landing/contact/ContactUs';
 import Services from './landing/Services';
 import AboutUs from './landing/AboutUs';
 import Schedule from './landing/Schedule';
@@ -47,6 +47,7 @@ class App extends Component {
 			</BrowserRouter>
 		);
 	}
+
 }
 
 export default connect(null, actions)(App);
