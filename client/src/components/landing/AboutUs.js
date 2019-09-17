@@ -8,6 +8,7 @@ class AboutUs extends Component {
 					<section>
 						<div className="container">
 							<h3>About Us</h3>
+							<p>We are a growing Heating and Air Company located in El Dorado Hills, CA.</p>
 						</div>
 					</section>
 				</div>
