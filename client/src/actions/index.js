@@ -18,10 +18,9 @@ export const submitSurvey = (values, history) => async (dispatch) => {
 };
 
 export const submitContactUs = (values) => async (dispatch) => {
-	console.log('submit' + values);
+	console.log('Submitted');
 	//const res = await axios.post('/api/contact', values);
-	//history.push('/');
-	//dispath({ type: FETCH_USER, payload: res.data});
+	//dispatch({ type: FETCH_USER, payload: res.data});
 }
 
 export const logoutUser = () => async (dispatch) => {

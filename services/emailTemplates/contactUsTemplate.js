@@ -10,6 +10,7 @@ module.exports = (contact) => {
                     <p>Name: ${contact.fname} ${contact.lname} </p>
                     <p>Phone: ${contact.phone} </p>
                     <p>Email: ${contact.email} </p>
+                    <p>Comment: ${contact.comments} </p>
                 </div>
             </body>
         </html>
