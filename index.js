@@ -31,7 +31,7 @@ app.use(passport.session());
 
 require('./routes/authRoutes')(app);
 require('./routes/settingRoutes')(app);
-
+require('./routes/contactRoutes')(app);
 
 if (process.env.NODE_ENV === 'production') {
 	app.use(express.static('client/build'));

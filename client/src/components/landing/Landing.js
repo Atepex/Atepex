@@ -4,7 +4,6 @@ import JumbotronCmp from './Jumbotron';
 import Cards from './Cards';
 import PhotoGallery from './PhotoGallery';
 import { Col, Row } from 'react-bootstrap';
-import ContactForm from './contact/ContactForm';
 
 class Landing extends Component {
 	render() {
