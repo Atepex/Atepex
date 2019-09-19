@@ -8,9 +8,18 @@ class AboutUs extends Component {
 					<section>
 						<div className="container">
 							<h3>About Us</h3>
-							<p>We are a growing Heating and Air Company located in El Dorado Hills, CA.</p>
-							<h5>Contractor's License</h5>
-							<p>Held by Aaron Vaughn</p>
+							<br></br>
+							<h4>Owner</h4>
+							<p>Aaron Vaughn started Vaughn's A/C and Heating in June, 2018. <br></br>
+							Aaron has over 6 years of professional experience.</p>
+							<h4>Company</h4>
+							<p>Since opening, Vaughn's A/C has been steadily growing. Despite<br></br>
+							the continued growth, customer satisfaction has remained at the forefront.<br></br>
+							Vaughn's A/C and Heating is based in <br></br>
+							El Dorado Hills, CA.  Vaughn's services El Dorado and Sacramento Counties.  </p>
+							<h5>California Contractor's License</h5>
+							<p>License Number: 123456<br></br>
+							   Held by Owner Aaron Vaughn</p>
 						</div>
 					</section>
 				</div>
