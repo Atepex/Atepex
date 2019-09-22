@@ -1,9 +1,15 @@
 import _ from 'lodash';
 import React, { Component } from 'react';
 const serv = [
-	{name: 'Text 1'},
+	{name: 'Repair & Replacement'},
 	{name: 'Text 2'},
 	{name: 'Text 3'}
+]
+
+const miniServ = [
+	{item: 'Text 1'},
+	{item: 'Text 2'},
+	{item: 'Text 3'}
 ]
 
 class Services extends Component {
@@ -11,8 +17,11 @@ class Services extends Component {
 	{
 		return _.map(serv, ({name}) => {
 			return (
-                <li>{name}</li>
-            );
+				<h3>{name}</h3>
+			);
+			return (
+				<li>{miniServ[serv]}</li>
+			);
 		});
 	}
 	render() {
