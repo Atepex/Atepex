@@ -25,7 +25,7 @@ class PhotoGallery extends Component {
     renderFields() {
 		return _.map(photoObjFields, ({ id, label, imgSrc }) => {
 			return (
-                <div key={id}><img key={id} style={imgStyle} src={imgSrc} />{label}</div>
+                <div key={id}><img alt={id} key={id} style={imgStyle} src={imgSrc} />{label}</div>
             );
 		});
     }

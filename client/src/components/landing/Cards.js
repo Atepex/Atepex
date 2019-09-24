@@ -2,22 +2,7 @@ import _ from 'lodash';
 import React, { Component } from 'react';
 import cardFields from './cardFields';
 import Card from './Card';
-import img1 from '../../images/photo3.jpeg';
 import { CardDeck } from 'react-bootstrap';
-
-const cardsStyle = {
-    display: '-webkit-flex',
-	display: 'flex',
-	webkitJustifyContent: 'center',
-	justifyContent: 'center',
-	webkitFlexWrap: 'wrap',
-	flexWrap: 'wrap',
-	marginTop: '15px',
-	padding: '1.5%',
-	webkitBoxSizing: 'border-box',
-	mozBoxSizing: 'border-box',
-	boxSizing: 'border-box'
-};
 
 class Cards extends Component {
     getScreenSize() {

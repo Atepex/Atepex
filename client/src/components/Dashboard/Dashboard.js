@@ -1,20 +1,22 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
+import DashboardAdmin from './DashboardAdmin';
+import DashboardUser from './DashboardUser';
 
-const color = {
-    color: 'black',
-    backgroundColor:'red'
 
-};
 class Dashboard extends Component {
+	renderComponent() {
+		console.log('auth ' + this.props.auth);
+		return (
+			this.props.auth.admin ? <DashboardAdmin /> : <DashboardUser />
+		);
+	}
 	render() {
 		return (
 			<div id="main">
 				<div id="content">
 					<section>
 						<div className="container">
-							<h3>Dashboard</h3>
-                            
+							{this.renderComponent}
 						</div>
 					</section>
 				</div>

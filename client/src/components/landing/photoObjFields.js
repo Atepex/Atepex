@@ -6,8 +6,6 @@ import img5 from '../../images/img5.webp';
 import img6 from '../../images/img6.webp';
 
 
-const desc = 'This is the picture description';
-
 export default [
     {id: 1, label: 'Furnace control board is fried!', imgSrc: img1 },
     {id: 2, label: 'New Trane high efficency furnace installed', imgSrc: img2 },
