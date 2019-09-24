@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import '../../css/app.css';
 import JumbotronCmp from './Jumbotron';
-import Cards from './Cards';
-import PhotoGallery from './PhotoGallery';
+import Cards from './card/Cards';
+import PhotoGallery from './photo/PhotoGallery';
 
 class Landing extends Component {
 	render() {
