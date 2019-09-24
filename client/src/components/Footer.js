@@ -1,10 +1,6 @@
 import React, { Component } from 'react';
 import { SocialIcon } from 'react-social-icons';
-import { Link } from 'react-router-dom';
 
-const socialStyle = {
-  padding: '10px',
-};
 
 const liStyle = {
   float: 'left',
@@ -22,10 +18,24 @@ const containerStyle = {
 };
 
 const footerStyle = {
-  backgroundColor: '#f4f4f4'
+  backgroundColor: 'white'
 };
 
 class Footer extends Component {
+	getURL(id) {
+		switch(id) {
+			case 'facebook': return 'https://www.facebook.com/Vaughsac/';
+			case 'instagram': return '';
+			case 'yelp': return 'https://www.yelp.com/biz/vaughns-a-c-and-heating-el-dorado-hills';
+			default: return '';
+		};
+	}
+	navToSocial(id) {
+		const URL = this.getURL(id);
+		if (URL !== '')
+			window.open(URL, '_blank');
+	}
+
 	render() {
 		return (
 			<footer style={footerStyle}>
@@ -61,15 +71,9 @@ class Footer extends Component {
 					<div>
 						Follow Us On
 						<div>
-							<Link style={socialStyle} to="/facebook">
-								<SocialIcon network="facebook" />
-							</Link>
-							<Link style={socialStyle} to="/instagram">
-								<SocialIcon network="instagram" />
-							</Link>
-							<Link style={socialStyle} to="/yelp">
-								<SocialIcon network="yelp" />
-							</Link>
+							<SocialIcon className="socIcon" network="facebook" onClick={() => this.navToSocial('facebook')} />
+							<SocialIcon className="socIcon" network="instagram" onClick={() => this.navToSocial('instagram')}/>
+							<SocialIcon className="socIcon" network="yelp" onClick={() => this.navToSocial('yelp')} />
 						</div>
 					</div>
 					<div id="copy">&#xa9; Designed and built by Team Atepex 2019</div>

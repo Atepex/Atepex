@@ -1,8 +1,7 @@
 import React, { Component } from "react";
 import { connect } from 'react-redux';
-import { Link } from 'react-router-dom';
 import logo from "../images/logo.png";
-import { Navbar, Nav, Img } from "react-bootstrap";
+import { Navbar, Nav } from "react-bootstrap";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import '../css/app.css';
 import { SocialIcon } from 'react-social-icons';
@@ -11,9 +10,6 @@ const imgStyle = {
 	height: '30px', 
 	width: '30px',
 	marginRight: '5px'
-};
-const navStyle = {
-  backgroundColor:'red',
 };
 
 
@@ -43,11 +39,11 @@ class Header extends Component {
     return (
       <Navbar fixed="top" bg="lt" expand="lg">
         <Navbar.Brand href="/">
-          <img className="logo" src={logo} />
+          <img className="logo" alt="logo" src={logo} />
           <h5 className="name">VAUGHN'S A/C &amp; HEATING</h5>
         </Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
-        <Navbar.Collapse id="basic-navbar-nav">
+        <Navbar.Collapse  id="basic-navbar-nav">
           <Nav className="ml-auto">
             <Nav.Link key='1' href="/">Home</Nav.Link>
             <Nav.Link key='2' href="/Services">Services</Nav.Link>

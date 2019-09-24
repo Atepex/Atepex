@@ -6,21 +6,12 @@ const serv = [
 	{name: 'Text 3'}
 ]
 
-const miniServ = [
-	{item: 'Text 1'},
-	{item: 'Text 2'},
-	{item: 'Text 3'}
-]
-
 class Services extends Component {
 	renderContent()
 	{
 		return _.map(serv, ({name}) => {
 			return (
 				<h3>{name}</h3>
-			);
-			return (
-				<li>{miniServ[serv]}</li>
 			);
 		});
 	}

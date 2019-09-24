@@ -17,7 +17,7 @@ module.exports = app => {
         });
         
         const recipient = 'emeryhaddy@gmail.com';
-        const mailer = new Mailer2();
+        const mailer = new Mailer2(contactUsTemplate(contact));
         
         try {
             await mailer.send();
@@ -26,6 +26,8 @@ module.exports = app => {
             console.log(err);
             res.status(422).send(err);
         }
+
+    
     
     });
 

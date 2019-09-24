@@ -6,7 +6,7 @@ const contactSchema = new Schema ({
     lname: String,
     phone: String,
     email: String,
-    comment: String,
+    comments: String,
     dateSent: Date
 });
 
