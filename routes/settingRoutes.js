@@ -11,4 +11,5 @@ module.exports = app => {
 
     res.status(404).send('Not Found');
   });
+
 };

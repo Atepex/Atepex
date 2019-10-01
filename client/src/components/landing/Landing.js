@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import '../../css/app.css';
 import JumbotronCmp from './Jumbotron';
-import Cards from './Cards';
-import PhotoGallery from './PhotoGallery';
-import { Col, Row } from 'react-bootstrap';
+import Cards from './card/Cards';
+import PhotoGallery from './photo/PhotoGallery';
 
 class Landing extends Component {
 	render() {
@@ -45,4 +45,8 @@ class Landing extends Component {
 	}
 }
 
-export default Landing;
+function mapStateToProps({ auth }) {
+	return { auth };
+}
+
+export default connect(mapStateToProps)(Landing);
