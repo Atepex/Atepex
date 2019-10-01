@@ -5,9 +5,8 @@ import * as actions from '../actions';
 
 import Header from './Header';
 import Landing from './landing/Landing';
-import Dashboard from './Dashboard';
+import Dashboard from './dashboard/Dashboard';
 import Footer from './Footer';
-import Credentials from './credentials/Credentials';
 import ContactUs from './landing/contact/ContactUs';
 import Services from './landing/Services';
 import AboutUs from './landing/AboutUs';
@@ -34,13 +33,11 @@ class App extends Component {
 					<div id="wrapper">
 						<Header />
 						<Route exact path="/" component={Landing} />
-						<Route exact path="/Login" component={Credentials}  showSignUp="false" />
-						<Route exact path="/SignUp" render={(props) => <Credentials {...props} showSignUp={true} />}/>
 						<Route exact path="/ContactUs" component={ContactUs} />
 						<Route exact path="/Services" component={Services} />
 						<Route exact path="/AboutUs" component={AboutUs} />
 						<Route exact path="/Schedule" component={Schedule} />
-						<Route path="/Dashboard" component={Dashboard} />
+						<Route exact path="/Dashboard" component={Dashboard} />
 						<Footer />
 					</div>
 				</div>

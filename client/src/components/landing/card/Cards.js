@@ -2,20 +2,18 @@ import _ from 'lodash';
 import React, { Component } from 'react';
 import cardFields from './cardFields';
 import Card from './Card';
-import img1 from '../../images/photo3.jpeg';
-import { CardDeck } from 'react-bootstrap';
+import { CardDeck, } from 'react-bootstrap';
 
 const cardsStyle = {
     display: '-webkit-flex',
-	display: 'flex',
-	webkitJustifyContent: 'center',
+	WebkitJustifyContent: 'center',
 	justifyContent: 'center',
-	webkitFlexWrap: 'wrap',
+	WebkitFlexWrap: 'wrap',
 	flexWrap: 'wrap',
 	marginTop: '15px',
 	padding: '1.5%',
-	webkitBoxSizing: 'border-box',
-	mozBoxSizing: 'border-box',
+	WebkitBoxSizing: 'border-box',
+	MozBoxSizing: 'border-box',
 	boxSizing: 'border-box'
 };
 
@@ -36,8 +34,8 @@ class Cards extends Component {
 	render() {
 		return (
                 <div  className="row">
-					<CardDeck>
-					{this.renderFields()}
+					<CardDeck style={cardsStyle}>
+							{this.renderFields()}
 					</CardDeck>
                 </div>
 		);

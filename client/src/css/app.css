@@ -12,8 +12,8 @@ nav {
 	background-color: white;
 }
 .logo {
-	width: 193px;
-	height: 125x;
+	width: 139px;
+	height: 90px;
 	line-height: 55px;
 	font-size: 55px;
 	margin: 0;
@@ -24,15 +24,15 @@ nav {
 }
 
 .navbar-collapse.collapse.show {
-	background-color: #2172c4;
+	background-color: white;
 }
  
 .nav-link {
-	color: white !important;
+	color:  #2172c4 !important;
 }
 
 .nav-link:hover {
-	color: #3c3c3c !important;
+	color: red !important;
 }
 
 
@@ -106,6 +106,21 @@ section.color {
 	width: 50% !important;
 }
 
+/* schedule now modal */
+.modalSubmit {
+	float: right;
+}
+
+.modalFooterText {
+	font-size: 10px;
+}
+
+/* cards */
+.info-card {
+	height: auto;
+}
+
+
 /* Footer */
 
 footer {
@@ -158,17 +173,15 @@ footer ul li {
   padding:0;
 }
 
+footer .socIcon {
+	margin: 10px;
+}
 .clearfix:after {
 	visibility: hidden;
 	display: block;
 	content: "";
 	clear: both;
 	height: 0;
-}
-
-/* contact us */
-.review-label {
-	color: #2172c4;
 }
 
 /* Screen Size */
