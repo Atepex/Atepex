@@ -1,10 +1,10 @@
 import React, { Component } from "react";
-import { connect } from "react-redux";
+import { connect } from 'react-redux';
 import logo from "../images/logo.png";
 import { Navbar, Nav } from "react-bootstrap";
-import "bootstrap/dist/css/bootstrap.min.css";
-import "../css/app.css";
-import { SocialIcon } from "react-social-icons";
+import 'bootstrap/dist/css/bootstrap.min.css';
+import '../css/app.css';
+import { SocialIcon } from 'react-social-icons';
 
 const imgStyle = {
   height: "30px",
@@ -43,7 +43,7 @@ class Header extends Component {
           <h5 className="name">VAUGHN'S A/C &amp; HEATING</h5>
         </Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
-        <Navbar.Collapse id="basic-navbar-nav">
+        <Navbar.Collapse  id="basic-navbar-nav">
           <Nav className="ml-auto">
             <Nav.Link key="1" href="/">
               Home
