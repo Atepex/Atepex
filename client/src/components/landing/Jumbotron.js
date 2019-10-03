@@ -1,6 +1,7 @@
 import _ from "lodash";
 import React, { Component } from "react";
 import { connect } from 'react-redux';
+import axios from "axios";
 
 import {
   Jumbotron,
@@ -44,23 +45,28 @@ class JumbotronCmp extends Component {
 
   handleSubmit(event) {
     const { fname, lname, street, city, stateAbbrv, zip, service, time, comments } = this.state;
-    alert(
-      "First Name: " +
-        fname +
-        " Last Name: " +
-        lname +
-        " Street: " +
-        street +
-        " City: " +
-        city +
-        " stateAbbrv: " +
-        stateAbbrv +
-        " Zip Code: " +
-        zip + 
-        " Service: " + service + 
-        " Time: " + time + 
-        " Comments: " + comments
-      );
+    const subject = "Schedule Appointment";
+    const sendTo = 'emeryhaddy@gmail.com';
+    axios
+    .post("/api/schedulenow", {
+      fname,
+      lname,
+      street,
+      city,
+      stateAbbrv,
+      zip,
+      service,
+      time,
+      comments,
+      subject,
+      sendTo
+    })
+    .catch(err => {
+      alert("error " + err);
+      return;
+    });
+
+    alert('email sent');
   }
 
   setShow(value) {

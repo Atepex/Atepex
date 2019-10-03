@@ -210,10 +210,16 @@ footer .socIcon {
 	}
 	
 	.name {
-		display: inline;
-		padding: 10px;
-		font-weight: bold;
+		display: none;
 	}
+
+	/*
+		.name {
+		 	display: inline;
+			padding: 10px;
+			font-weight: bold;
+		}
+	*/
 }
 
 @media all and (max-width: 487px) {

@@ -3,22 +3,24 @@ const helper = sendGrid.mail;
 const keys = require("../config/keys");
 
 class Mailer2 extends helper.Mail {
-  constructor(content) {
+  constructor(content, recipient, subject) {
     super();
     this.state = {
-      content
+      content,
+      recipient,
+      subject
     }
   }
 
   async send() {
-    const {content } = this.state;
+    const {content, recipient, subject } = this.state;
     console.log('content ' + content);
     const sgMail = require("@sendgrid/mail");
     sgMail.setApiKey(keys.sendGridKey);
     const msg = {
-      to: "emeryhaddy@gmail.com",
+      to: recipient,
       from: "support@vaughns.com",
-      subject: 'Contact Us',
+      subject: subject,
       html: content
     };
     sgMail.send(msg);

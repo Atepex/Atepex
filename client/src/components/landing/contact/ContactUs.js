@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { connect } from 'react-redux';
+import { connect } from "react-redux";
 import { Form, Col, Button } from "react-bootstrap";
 import axios from "axios";
 
@@ -24,18 +24,39 @@ class ContactUs extends Component {
 
   handleSubmit(event) {
     const { fname, lname, email, phone, comments } = this.state;
-    const subject = 'Contact Us';
+    const subject = "Contact Us";
     event.preventDefault();
-    //actions.submitContactUs(this.state)
+
     axios
-      .post("/api/contact", { fname, lname, email, phone, comments, subject })
+      .get("/api/settings/email")
+      .then(res => {
+        const sendTo = res.data;
+        if (sendTo.includes("@")) {
+          axios
+            .post("/api/contact", {
+              fname,
+              lname,
+              email,
+              phone,
+              comments,
+              subject,
+              sendTo
+            })
+            .catch(err => {
+              alert("error " + err);
+              return;
+            });
+        } else {
+          alert("Unable to send email. Please retry");
+          return;
+        }
+      })
       .catch(err => {
-        alert("error " + err);
+        alert("Unable to send email. Please retry");
         return;
       });
-      
-      alert('Your email has been submitted');
-      window.location.reload();
+      alert("Your email has been submitted");
+          window.location.reload();
   }
 
   render() {
@@ -107,9 +128,8 @@ class ContactUs extends Component {
   }
 }
 
-
 function mapStateToProps({ auth }) {
-	return { auth };
+  return { auth };
 }
 
 export default connect(mapStateToProps)(ContactUs);

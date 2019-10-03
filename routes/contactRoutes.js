@@ -5,7 +5,7 @@ const Mailer2 = require('../services/Mailer2');
 
 module.exports = app => {
     app.post('/api/contact', async (req, res) => {
-        const { fname, lname, email, phone, comments, subject } = req.body;
+        const { fname, lname, email, phone, comments, subject, sendTo } = req.body;
     
         const contact = new Contact({
             fname,
@@ -13,11 +13,12 @@ module.exports = app => {
             email,
             phone,
             comments,
+            subject,
             dateSent: Date.now()
         });
         
-        const recipient = 'emeryhaddy@gmail.com';
-        const mailer = new Mailer2(contactUsTemplate(contact));
+        const recipient = sendTo;
+        const mailer = new Mailer2(contactUsTemplate(contact), recipient, subject);
         
         try {
             await mailer.send();

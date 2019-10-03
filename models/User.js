@@ -1,12 +1,12 @@
 const mongoose = require('mongoose');
-//these are equivalent
-//const Schema = mongoose.Schema;
-// const {Schema} = mongoose;
 const { Schema } = mongoose;
 
 const userSchema = new Schema ({
     googleID: String,
-    credits: { type: Number, default: 0 }
+    firstName: String,
+    lastName: String,
+    email: String,
+    admin: { type: Boolean, default: false }
 });
 
 mongoose.model('users', userSchema); 
