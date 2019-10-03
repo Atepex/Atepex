@@ -10,13 +10,16 @@ require('./models/Contact');
 require('./models/Schedule');
 require('./services/passport');
 
-
 //mongoose.connect(keys.mongoURI);
-mongoose.connect(keys.mongoURI, () => { }, { useNewUrlParser: true })
+/*mongoose.connect(keys.mongoURI, () => { }, { useNewUrlParser: true })
     .catch(err => {
         console.log(err);
     });
-
+*/
+mongoose.connect(keys.mongoURI, { useNewUrlParser: true })
+	.catch(err => {
+		console.log(err);
+	});
 const app = express();
 
 app.use(bodyParser.json());
@@ -34,6 +37,7 @@ require('./routes/authRoutes')(app);
 require('./routes/settingRoutes')(app);
 require('./routes/contactRoutes')(app);
 require('./routes/scheduleRoutes')(app);
+require('./routes/clientRoutes')(app);
 
 if (process.env.NODE_ENV === 'production') {
 	app.use(express.static('client/build'));
