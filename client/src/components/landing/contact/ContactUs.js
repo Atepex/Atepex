@@ -46,16 +46,17 @@ class ContactUs extends Component {
               alert("error " + err);
               return;
             });
-          alert("Your email has been submitted");
-          window.location.reload();
         } else {
           alert("Unable to send email. Please retry");
+          return;
         }
       })
       .catch(err => {
         alert("Unable to send email. Please retry");
         return;
       });
+      alert("Your email has been submitted");
+          window.location.reload();
   }
 
   render() {

@@ -23,7 +23,7 @@ module.exports = app => {
         const mailer = new Mailer2(scheduleTemplate(schedule), recipient, subject);
         
         try {
-            await mailer.send();
+            await mailer.send(); 
             res.status(200);
         } catch (err) {
             console.log(err);
