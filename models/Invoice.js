@@ -5,7 +5,7 @@ const invoiceSchema = new Schema({
     _userID: String, 
     invoiceID: NumberInt,
     invoiceDate: Date, 
-    invoiceData: Binary, 
+    invoiceData: binData, 
     invoiceDesc: String
     
 }); 
