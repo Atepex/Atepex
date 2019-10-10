@@ -15,7 +15,7 @@ class Dashboard extends Component {
 		return (
 			<>
 			  {this.renderComponent()} 
-			{/*	<DashboardAdmin /> */}
+			{	/*<DashboardAdmin />*/}
 			</>
 		);
 	}
