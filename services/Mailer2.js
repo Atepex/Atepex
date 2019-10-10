@@ -14,7 +14,6 @@ class Mailer2 extends helper.Mail {
 
   async send() {
     const {content, recipient, subject } = this.state;
-    console.log('content ' + content);
     const sgMail = require("@sendgrid/mail");
     sgMail.setApiKey(keys.sendGridKey);
     const msg = {

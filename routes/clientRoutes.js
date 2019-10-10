@@ -3,7 +3,7 @@ const User = mongoose.model("users");
 
 module.exports = app => {
     app.get("/api/getclients", async (req, res) => {
-        const users = await User.find({admin: false});
+        const users = await User.find();
         if (users) {
           res.send(users);
           return;

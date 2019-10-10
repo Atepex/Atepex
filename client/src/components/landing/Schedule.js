@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import { Form, Col, Button } from "react-bootstrap";
 
 class Schedule extends Component {
     render() {
