@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Row, Col, Tabs, Tab } from "react-bootstrap";
+import { Tabs, Tab } from "react-bootstrap";
 import ViewClients from "./ViewClients";
 
 class DashboardAdmin extends Component {

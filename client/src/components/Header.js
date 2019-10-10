@@ -14,13 +14,12 @@ const imgStyle = {
 
 class Header extends Component {
   renderContent() {
-    console.log("header auth " + this.props.auth);
     switch (this.props.auth) {
       case null:
       case false:
         return [
-          <Nav.Link href="/auth/google">
-            <SocialIcon network="google" style={imgStyle} />
+          <Nav.Link key="8" href="/auth/google">
+            <SocialIcon keuy="9" network="google" style={imgStyle} />
             Login With Google
           </Nav.Link>
         ];
@@ -29,7 +28,7 @@ class Header extends Component {
           <Nav.Link key="6" href="/Dashboard">
             Dashboard
           </Nav.Link>,
-          <Nav.Link key="6" href="/api/logout">
+          <Nav.Link key="7" href="/api/logout">
             Logout
           </Nav.Link>
         ];

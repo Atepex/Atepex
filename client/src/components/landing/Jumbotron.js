@@ -13,7 +13,6 @@ import {
   Col
 } from "react-bootstrap";
 import "../../css/app.css";
-import stateFields from "./schedule/states";
 import serviceItems from "./schedule/serviceItems";
 import timeFields from "./schedule/times";
 import states from "./schedule/states";
@@ -39,7 +38,6 @@ class JumbotronCmp extends Component {
   }
 
   handleChange(event) {
-    console.log("Name: " + event.target.name + " value: " + event.target.value);
     this.setState({ [event.target.name]: event.target.value });
   }
 
