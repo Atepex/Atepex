@@ -3,9 +3,9 @@ const { Schema } = mongoose;
 
 const invoiceSchema = new Schema({
     _userID: String, 
-    invoiceID: NumberInt,
-    invoiceDate: Date, 
-    invoiceData: binData, 
+    invoiceID: Number,
+    invoiceDate:  { type: Date, default: Date.now() }, 
+    invoiceData: {type: Object}, 
     invoiceDesc: String
     
 }); 

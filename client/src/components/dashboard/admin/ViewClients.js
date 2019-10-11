@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Row, Col } from 'react-bootstrap';
 import Clients from './Clients';
 import ClientForm from './ClientForm';
+//import uploadInvoice from './uploadInvoice';
 
 class ViewClients extends Component {
     constructor(props, context) {
@@ -28,8 +29,12 @@ class ViewClients extends Component {
                             </Col>
                             <Col  md={8} lg={8} xl={8}>
                                 <ClientForm user={this.state.userID} />
+                                <Row>
+                                 <h4>Invoices</h4>
+                                </Row>
                             </Col> 
                         </Row>
+                        
                     </div>
                 </section>
             </>

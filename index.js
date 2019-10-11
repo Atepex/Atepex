@@ -9,6 +9,7 @@ require('./models/SystemSettings');
 require('./models/Contact');
 require('./models/Schedule');
 require('./services/passport');
+require('./models/Invoice');
 
 
 mongoose.connect(keys.mongoURI, { useNewUrlParser: true })
@@ -33,6 +34,7 @@ require('./routes/settingRoutes')(app);
 require('./routes/contactRoutes')(app);
 require('./routes/scheduleRoutes')(app);
 require('./routes/clientRoutes')(app);
+require('./routes/invoiceRoutes')(app);
 
 if (process.env.NODE_ENV === 'production') {
 	app.use(express.static('client/build'));

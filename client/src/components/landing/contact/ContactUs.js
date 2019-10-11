@@ -30,7 +30,7 @@ class ContactUs extends Component {
     axios
       .get("/api/settings/email")
       .then(res => {
-        const sendTo = res.data;
+        const sendTo = 'alec.vaughn32@gmail.com';//res.data;
         if (sendTo.includes("@")) {
           axios
             .post("/api/contact", {
