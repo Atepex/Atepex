@@ -27,36 +27,28 @@ class ContactUs extends Component {
     const subject = "Contact Us";
     event.preventDefault();
 
-    axios
-      .get("/api/settings/email")
-      .then(res => {
-        const sendTo = 'alec.vaughn32@gmail.com';//res.data;
-        if (sendTo.includes("@")) {
-          axios
-            .post("/api/contact", {
-              fname,
-              lname,
-              email,
-              phone,
-              comments,
-              subject,
-              sendTo
-            })
-            .catch(err => {
-              alert("error " + err);
-              return;
-            });
-        } else {
-          alert("Unable to send email. Please retry");
+    const sendTo = 'emeryhaddy@gmail.com'
+    if (sendTo.includes("@")) {
+      axios
+        .post("/api/contact", {
+          fname,
+          lname,
+          email,
+          phone,
+          comments,
+          subject,
+          sendTo
+        })
+        .catch(err => {
+          alert("error " + err);
           return;
-        }
-      })
-      .catch(err => {
-        alert("Unable to send email. Please retry");
-        return;
-      });
-      alert("Your email has been submitted");
-          window.location.reload();
+        });
+    } else {
+      alert("Unable to send email. Please retry");
+      return;
+    }
+    alert("Email Sent");
+    window.location.reload();
   }
 
   render() {

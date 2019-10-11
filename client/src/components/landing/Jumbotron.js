@@ -64,7 +64,7 @@ class JumbotronCmp extends Component {
       return;
     });
 
-    alert('email sent');
+    alert('Email Sent');
   }
 
   setShow(value) {
