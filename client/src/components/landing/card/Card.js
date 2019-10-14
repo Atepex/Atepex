@@ -35,7 +35,7 @@ function getImage(id) {
 
 export default ({ input, id, label, cImage, cText, forward, btnTxt, size}) => {
    return (
-        <Col sm={9} md={8} lg={4} xl={4}>
+        <Col sm={9} md={7} lg={4} xl={4}>
             <Card className="info-card" bg="primary" text="white" style={cardStyle} key={id}>
                 <Card.Img variant="top" style={imgStyle} src={getImage(id)} />
                 <Card.Body>

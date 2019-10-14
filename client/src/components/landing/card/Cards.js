@@ -19,7 +19,6 @@ const cardsStyle = {
 
 class Cards extends Component {
     getScreenSize() {
-        console.log('width ' + window.innerWidth );
         return window.innerWidth;
     }
     renderFields() {

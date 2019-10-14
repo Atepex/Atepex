@@ -6,7 +6,6 @@ import DashboardUser from './user/DashboardUser';
 
 class Dashboard extends Component {
 	renderComponent() {
-		console.log('dashboard auth ' + this.props.auth);
 		return (
 			this.props.auth ? this.props.auth.admin ? <DashboardAdmin /> : <DashboardUser /> : <DashboardUser />
 		);
@@ -16,7 +15,7 @@ class Dashboard extends Component {
 		return (
 			<>
 			  {this.renderComponent()} 
-			{/*	<DashboardAdmin /> */}
+			{	/*<DashboardAdmin />*/}
 			</>
 		);
 	}

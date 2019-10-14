@@ -19,7 +19,6 @@ export const submitSurvey = (values, history) => async dispatch => {
 
 
 export const logoutUser = () => async dispatch => {
-  console.log("trying to log out");
   const res = await axios.post("/api/logout");
   dispatch({ type: FETCH_USER, payload: res.data });
 };

@@ -10,12 +10,7 @@ require('./models/Contact');
 require('./models/Schedule');
 require('./services/passport');
 
-//mongoose.connect(keys.mongoURI);
-/*mongoose.connect(keys.mongoURI, () => { }, { useNewUrlParser: true })
-    .catch(err => {
-        console.log(err);
-    });
-*/
+
 mongoose.connect(keys.mongoURI, { useNewUrlParser: true })
 	.catch(err => {
 		console.log(err);
