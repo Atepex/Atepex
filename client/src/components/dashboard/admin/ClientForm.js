@@ -82,7 +82,7 @@ class ClientForm extends Component {
     });
 
     alert('user has been deleted');
-      window.location.reload();
+    window.location.reload();
 
   }
 
