@@ -2,6 +2,10 @@ import React, { Component } from 'react';
 import Files from 'react-files';
 import upImg from '../../../images/upload.png';
 
+const upStyle = {
+    border: '1px solid #ccc',
+    borderRadius: '16px'
+};
 
 class Uploader extends Component {
     constructor(props, context) {
@@ -26,7 +30,7 @@ class Uploader extends Component {
     }
     render() {
         return (
-            <div className="files">
+            <div className="files" style={upStyle}>
                 <Files
                     className="files-dropzone"
                     onChange={this.onFilesChange}

@@ -5,7 +5,7 @@ const Mailer2 = require('../services/Mailer2');
 
 module.exports = app => {
     app.post('/api/schedulenow', async (req, res) => {
-        const { fname, lname, street, stateAbbrv, zip, service, time, comments, subject, sendTo } = req.body;
+        const { fname, lname, street, stateAbbrv, zip, service, time, comments, subject, sendTo, phone, email } = req.body;
     
         const schedule = new Schedule({
             fname,
@@ -16,7 +16,9 @@ module.exports = app => {
             service,
             time,
             comments,
-            subject
+            subject,
+            phone, 
+            email
         });
         
         const recipient = sendTo;
