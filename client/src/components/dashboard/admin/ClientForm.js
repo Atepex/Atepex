@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { Form, Col, Button } from "react-bootstrap";
 import { getClients } from "./ClientList";
+import axios from "axios";
 
 const label = {
   float: "left"
@@ -14,11 +15,25 @@ class ClientForm extends Component {
   constructor(props, context) {
     super(props, context);
 
-    this.state = { clients: [], edit: false, checked: false };
+    this.state = {
+      clients: [],
+      edit: false,
+      checked: false,
+      userID: this.props.user,
+      client: {},
+      fname: '',
+      lname: '',
+      phone: '',
+      zip: '', 
+      email: ''
+    };
+
 
     this.handleEditClick = this.handleEditClick.bind(this);
     this.handleCheckboxChange = this.handleCheckboxChange.bind(this);
+    this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.handleDelete = this.handleDelete.bind(this);
   }
   componentDidMount() {
     getClients().then(val => {
@@ -26,8 +41,21 @@ class ClientForm extends Component {
     });
   }
 
+  componentWillReceiveProps(props) {
+    if (props.user !== this.state.userID) {
+      this.setState({ userID: props.user });
+      this.setState({ client: this.getClient(props.user) });
+      this.setState({fname: this.getClient(props.user) ? this.getClient(props.user).firstName : ""});
+      this.setState({lname: this.getClient(props.user) ? this.getClient(props.user).lastName : ""});
+      this.setState({phone: this.getClient(props.user) ? this.getClient(props.user).phone : ""});
+      this.setState({zip: this.getClient(props.user) ? this.getClient(props.user).zip : ""});
+      this.setState({email: this.getClient(props.user) ? this.getClient(props.user).email : ""});
+    }
+
+    this.setState({edit: false});
+  }
   handleCheckboxChange(event) {
-    this.setState({checked: event.target.checked});
+    this.setState({ checked: event.target.checked });
   }
 
   getClient(userID) {
@@ -39,18 +67,60 @@ class ClientForm extends Component {
     });
   }
 
+  handleDelete() {
+    const { client } = this.state;
+    const { _id } = client;
+
+    
+    axios
+    .post("/api/deleteclient", {
+      _id,
+    })
+    .catch(err => {
+      alert("error " + err);
+      return;
+    });
+
+    alert('user has been deleted');
+      window.location.reload();
+
+  }
+
   handleEditClick() {
     this.setState({ edit: true });
   }
 
   handleSubmit() {
+    const { client, fname, lname, phone, zip, email } = this.state;
+    const { _id } = client;
+    
+    axios
+    .post("/api/modifyclient", {
+      _id,
+      fname,
+      lname,
+      phone,
+      zip,
+      email
+    })
+    .catch(err => {
+      alert("error " + err);
+      return;
+    });
+
     this.setState({ edit: false });
   }
 
+  handleChange(event) {
+    console.log(event.target.value);
+    this.setState({ [event.target.name]: event.target.value });
+  }
+
   render() {
-    const userID = this.props.user;
+    //const userID = this.props.user;
+    const { userID, client, edit, fname, lname, phone, zip, email } = this.state;
     const user = this.getClient(userID);
-    const { edit } = this.state;
+
     return (
       <>
         <Form onSubmit={this.handleSubmit}>
@@ -64,13 +134,13 @@ class ClientForm extends Component {
           </Button>
           <Button
             style={btnStyle}
-            variant="primary"
+            variant="success"
             type="submit"
             disabled={!edit}
           >
             Save
           </Button>
-          <Button style={btnStyle} variant="danger">
+          <Button style={btnStyle} variant="danger" onClick={this.handleDelete}>
             Delete
           </Button>
           <Form.Row>
@@ -81,7 +151,8 @@ class ClientForm extends Component {
                 type="text"
                 placeholder="First Name"
                 name="fname"
-                defaultValue={user ? user.firstName : ""}
+                defaultValue={fname}
+                onChange={this.handleChange}
               />
             </Form.Group>
             <Form.Group as={Col} controlId="formGridLName">
@@ -91,7 +162,8 @@ class ClientForm extends Component {
                 type="text"
                 placeholder="Last Name"
                 name="lname"
-                defaultValue={user ? user.lastName : ""}
+                defaultValue={lname}
+                onChange={this.handleChange}
               />
             </Form.Group>
           </Form.Row>
@@ -103,7 +175,8 @@ class ClientForm extends Component {
                 type="text"
                 placeholder="Phone"
                 name="phone"
-                defaultValue={user ? user.phone : ""}
+                defaultValue={phone}
+                onChange={this.handleChange}
               />
             </Form.Group>
             <Form.Group as={Col} controlId="formGridZip">
@@ -113,7 +186,8 @@ class ClientForm extends Component {
                 type="text"
                 placeholder="Zip Code"
                 name="zip"
-                defaultValue={user ? user.zip : ""}
+                defaultValue={zip}
+                onChange={this.handleChange}
               />
             </Form.Group>
           </Form.Row>
@@ -125,7 +199,8 @@ class ClientForm extends Component {
                 type="text"
                 placeholder="Email"
                 name="email"
-                defaultValue={user ? user.email : ""}
+                defaultValue={email}
+                onChange={this.handleChange}
               />
             </Form.Group>
           </Form.Row>

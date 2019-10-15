@@ -36,6 +36,7 @@ require('./routes/scheduleRoutes')(app);
 require('./routes/clientRoutes')(app);
 require('./routes/invoiceRoutes')(app);
 
+require('./routes/userInvoiceRoute')(app);
 
 if (process.env.NODE_ENV === 'production') {
 	app.use(express.static('client/build'));

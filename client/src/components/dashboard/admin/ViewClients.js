@@ -72,8 +72,8 @@ class ViewClients extends Component {
         this.setState({userID: data})
     }
     renderForm() {
-        if (this.state.userID <= 0)
-            return;
+       // if (this.state.userID <= 0)
+         //   return;
         return (
             <Col  md={15} lg={8} xl={8}>
                 <ClientForm user={this.state.userID} />

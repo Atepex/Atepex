@@ -13,7 +13,7 @@ class Clients extends Component {
 
     componentDidMount() {
         getClients().then(val => {
-            this.setState({clients: val});
+            this.setState({clients: val.sort((a,b) => a.firstName.localeCompare(b.firstName))});
         })
         
     }
