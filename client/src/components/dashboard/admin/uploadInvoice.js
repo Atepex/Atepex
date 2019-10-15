@@ -9,9 +9,7 @@ const Invoice = mongoose.model("invoices");
   uploadInvoice.use(
 
     async (accessToken, refreshToken, profile, done) => {
-        //profile.name.familyname
-        //profile.name.givenname
-        //profile.emails[0].value
+
         const existingInvoice = await Invoice.findOne({ invioceID: profile.invoiceID });
         if (existingInvoice) {
           //we already have a record with the given profile ID
@@ -21,7 +19,7 @@ const Invoice = mongoose.model("invoices");
         _userID: '5d964c05c3d53c8374e25f6e',
         invoiceID: 652,
         invoiceDate: Date(),
-        invoiceData: 'invoice_652.pdf',
+        invoiceData: '\\invoice_652.pdf',
         invoiceDesc: "Sample Invoice Test"
       }).save();
       done(null, invoice);
