@@ -3,9 +3,9 @@ const { Schema } = mongoose;
 
 const invoiceSchema = new Schema({
     _userID: String, 
-    invoiceID: NumberInt,
-    invoiceDate: Date, 
-    invoiceData: Binary, 
+    invoiceID: Number,
+    invoiceDate: Array, 
+    invoiceData: String, 
     invoiceDesc: String
     
 }); 
