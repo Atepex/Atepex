@@ -101,6 +101,10 @@ class ClientForm extends Component {
   }
 
   handleDelete() {
+    var answer = window.confirm("Are you sure you want to delete this client?");
+    if (!answer) {
+      return;
+    }
     const { client } = this.state;
     const { _id } = client;
 

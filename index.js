@@ -8,7 +8,9 @@ require('./models/User');
 require('./models/SystemSettings');
 require('./models/Contact');
 require('./models/Schedule');
+require("./models/Invoice");
 require('./services/passport');
+
 
 
 mongoose.connect(keys.mongoURI, { useNewUrlParser: true })
