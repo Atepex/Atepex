@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Form, Col, Button, Tabs, Tab, Container, Row } from "react-bootstrap";
 import { connect } from 'react-redux';
 import axios from 'axios'
+import User_invoices from './user_invoices'
 
 class DashboardUser extends Component {
 
@@ -13,6 +14,8 @@ class DashboardUser extends Component {
 			email: "",
 			phone: "",
 			zip: ""
+			//	toggleSave: disabled,
+			//	toggleEdit: enabled
 		};
 
 		this.handleChange = this.handleChange.bind(this);
@@ -28,21 +31,23 @@ class DashboardUser extends Component {
 
 
 		event.preventDefault();
-		console.log(this.state);
-
-		
-		axios.post("/api/user/invoice",{
-			fname,
-			lname,
-			email,
-			phone,
-			zip
+	
+	axios.post("/api/user/info",{
+		fname,
+		lname,
+		email,
+		phone,
+		zip
+	})
+		.catch(err => {
+			alert("error " + err);
+			return;
 		})
-			.catch(err => {
-				alert("error " + err);
-				return;
-			})
-			
+		
+	}
+
+	toggling() {
+
 	}
 
 	render() {
@@ -57,19 +62,25 @@ class DashboardUser extends Component {
 			<div id="main">
 				<div id="content">
 					<section>
-						<div style={styling}>
-							<Button style={btn} variant="success">Save Invoice</Button>
-							<Button style={btn} variant="warning">Edit Invoice</Button>
-						</div>
+						<h2>
+							Update information
+						</h2>
+
 						<div className="container">
 							<Form onSubmit={this.handleSubmit}>
+								<div style={styling}>
+									<Button type="submit" style={btn} variant="success" >Save</Button>
+									<Button style={btn} variant="warning" onClick={this.toggling}>Edit </Button>
+								</div>
 								<Form.Row>
+
 									<Form.Group as={Col} controlId="formGridFName">
 										<Form.Control
 											type="text"
 											placeholder="First Name"
 											name="fname"
 											required
+
 											onChange={this.handleChange}
 										/>
 									</Form.Group>
@@ -79,6 +90,7 @@ class DashboardUser extends Component {
 											placeholder="Last Name"
 											name="lname"
 											required
+
 											onChange={this.handleChange}
 										/>
 									</Form.Group>
@@ -90,6 +102,7 @@ class DashboardUser extends Component {
 											placeholder="Email"
 											name="email"
 											required
+
 											onChange={this.handleChange}
 										/>
 									</Form.Group>
@@ -98,6 +111,7 @@ class DashboardUser extends Component {
 											type="text"
 											placeholder="Phone Number (optional)"
 											name="phone"
+
 											onChange={this.handleChange}
 										/>
 									</Form.Group>
@@ -106,14 +120,15 @@ class DashboardUser extends Component {
 											type="text"
 											placeholder="Zip"
 											name="zip"
+
 											onChange={this.handleChange}
 										/>
 									</Form.Group>
 								</Form.Row>
-								<Button variant="primary" type="submit">
-									Submit
-					</Button>
 							</Form>
+
+							<User_invoices/>
+
 						</div>
 					</section>
 				</div>
