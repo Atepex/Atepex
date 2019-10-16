@@ -31,7 +31,7 @@ class InvoiceTable extends Component {
 
     this.state = {
       userID: "",
-      invoices: {}
+      invoices: {},
     };
   }
   
@@ -39,21 +39,25 @@ class InvoiceTable extends Component {
   componentWillReceiveProps(props) {
     this.setState({ userID: props.user });
     const _id = props.user;
-    axios.post("/api/getinvoices", {
-       _id
-    }).then(res => {
-      this.setState({invoices: res.data});
-    })
+    this.getInvoices(_id);
+  }
+
+  async getInvoices(_id) {
+    await axios.post("/api/getinvoices", {
+      _id
+   }).then(res => {
+     this.setState({invoices: res.data});
+   })
   }
 
   renderBody() {
     const { invoices } = this.state;
-    return _.map(invoices, ({invoiceID, invoiceDate, invoiceDesc }) => {
+    return _.map(invoices, ({_id, invoiceID, invoiceDate, invoiceDesc }) => {
 			return (
                <tr>
                  <td>
-                 <img src={viewImg} style={viewStyle} onClick={() => this.onRowClick(invoiceID)}/>
-                  <img src={deleteImg} style={imgStyle} onClick={() => this.onRowClickDelete(invoiceID)}/>
+                 <img src={viewImg} style={viewStyle} onClick={() => this.onRowClick(_id)}/>
+                  <img src={deleteImg} style={imgStyle} onClick={() => this.onRowClickDelete(_id)}/>
                  </td>
                  <td>{invoiceID}</td>
                  <td>{invoiceDate}</td>
@@ -62,14 +66,26 @@ class InvoiceTable extends Component {
             );
 		});
   }
-  onRowClickDelete(id) {
-    //var answer = window.confirm("Click");
-    //alert(answer);
-    alert('delete ' + id);
+  onRowClickDelete(_id) {
+    var answer = window.confirm("Are you sure you want to delete this invoice?");
+    if (!answer) {
+      return;
+    }
+
+    axios.post("/api/deleteinvoice", {
+        _id
+    })
+    .catch(err => {
+      alert('Unable to delete invoice');
+      return;
+    })
+
+    this.getInvoices(this.state.userID);
   }
 
   onRowClick(id) {
     alert('view ' + id);
+   
   }
 
   render() {

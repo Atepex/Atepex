@@ -16,5 +16,16 @@ module.exports = app => {
         }
     
         res.status(404).send('Not Found');
+    });
+
+    app.post("/api/deleteinvoice", async (req, res) => {
+        const {_id} = req.body;
+        Invoice.remove({_id: _id}, function(err) {
+            if (!err) {
+              return res.status(200);
+            }
+  
+            return res.status(404);
+          })
     })
 };
