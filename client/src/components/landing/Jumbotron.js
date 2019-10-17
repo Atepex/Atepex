@@ -30,7 +30,9 @@ class JumbotronCmp extends Component {
       zip: "",
       comments: "",
       service: "",
-      time: ""
+      time: "",
+      phone: "",
+      email: ""
     };
 
     this.handleChange = this.handleChange.bind(this);
@@ -42,9 +44,11 @@ class JumbotronCmp extends Component {
   }
 
   handleSubmit(event) {
-    const { fname, lname, street, city, stateAbbrv, zip, service, time, comments } = this.state;
+    const { fname, lname, street, city, stateAbbrv, zip, service, time, comments, phone, email } = this.state;
     const subject = "Schedule Appointment";
     const sendTo = 'emeryhaddy@gmail.com';
+
+    console.log(email + phone);
     axios
     .post("/api/schedulenow", {
       fname,
@@ -57,7 +61,9 @@ class JumbotronCmp extends Component {
       time,
       comments,
       subject,
-      sendTo
+      sendTo,
+      phone,
+      email
     })
     .catch(err => {
       alert("error " + err);
@@ -133,6 +139,26 @@ class JumbotronCmp extends Component {
                     type="text"
                     placeholder="Last Name"
                     name="lname"
+                    required
+                    onChange={this.handleChange}
+                  />
+                </Form.Group>
+              </Form.Row>
+              <Form.Row>
+                <Form.Group as={Col} controlId="modalPhone">
+                  <Form.Control
+                    type="text"
+                    placeholder="Phone"
+                    name="phone"
+                    required
+                    onChange={this.handleChange}
+                  />
+                </Form.Group>
+                <Form.Group as={Col} controlId="modalEmail">
+                  <Form.Control
+                    type="text"
+                    placeholder="Email"
+                    name="email"
                     required
                     onChange={this.handleChange}
                   />

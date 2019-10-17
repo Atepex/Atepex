@@ -57,7 +57,8 @@ import React, { Component } from 'react';
 import { Row, Col } from 'react-bootstrap';
 import Clients from './Clients';
 import ClientForm from './ClientForm';
-//import uploadInvoice from './uploadInvoice';
+import InvoiceTable from './InvoiceTable';
+import Uploader from './Uploader';
 
 
 class ViewClients extends Component {
@@ -71,15 +72,7 @@ class ViewClients extends Component {
     callbackFunction = (data) => {
         this.setState({userID: data})
     }
-    renderForm() {
-       // if (this.state.userID <= 0)
-         //   return;
-        return (
-            <Col  md={15} lg={8} xl={8}>
-                <ClientForm user={this.state.userID} />
-            </Col> 
-        )
-    }
+
     render() {
         return (
             <>
@@ -91,7 +84,18 @@ class ViewClients extends Component {
                                 <Clients parentCallback={this.callbackFunction} />
                                 <br />
                             </Col>
-                            {this.renderForm()}
+                            <Col  md={15} lg={8} xl={8}>
+                                <ClientForm user={this.state.userID} />
+                            </Col> 
+                        </Row>
+                        <Row>
+                            <Col  lg={3} xl={3}>
+                                <Uploader />
+                                <br />
+                            </Col>
+                            <Col  md={15} lg={8} xl={8}>
+                            <InvoiceTable user={this.state.userID} />
+                            </Col> 
                         </Row>
                         
                     </div>

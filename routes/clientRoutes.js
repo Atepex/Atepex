@@ -14,7 +14,7 @@ module.exports = app => {
 
       
       app.post("/api/modifyclient", async(req, res) => {
-        const { _id, fname, lname, phone, zip, email } = req.body;
+        const { _id, fname, lname, phone, zip, email, admin, recNews } = req.body;
         User.findOne({_id: _id}, function(err, user) {
           if (!err) {
             user.firstName = fname;
@@ -22,6 +22,8 @@ module.exports = app => {
             user.email = email;
             user.phone = phone;
             user.zip = zip;
+            user.admin = admin;
+            user.recNews = recNews;
             user.save();
             return res.status(200);
           }

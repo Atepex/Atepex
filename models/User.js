@@ -8,7 +8,8 @@ const userSchema = new Schema ({
     email: String,
     phone: String,
     zip: String,
-    admin: { type: Boolean, default: false }
+    admin: { type: Boolean, default: false },
+    recNews: { type: Boolean, default: true }
 });
 
 mongoose.model('users', userSchema); 

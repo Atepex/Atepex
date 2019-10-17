@@ -6,6 +6,8 @@ module.exports = (schedule) => {
                     <h3>Someone wants to schedule an appointment!</h3>
                     <p>Below you will find their contact information. Please get back to them ASAP to confirm the appointment</p>
                     <p>Name: ${schedule.fname} ${schedule.lname} </p>
+                    <p>Phone: ${schedule.phone} </p>
+                    <p>Email: ${schedule.email} </p>
                     <p>Street:  ${schedule.street} </p>
                     <p>State:  ${schedule.stateAbbrv} </p>
                     <p>Zip Code:  ${schedule.zip} </p>

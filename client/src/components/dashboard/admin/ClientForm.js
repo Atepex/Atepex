@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { Form, Col, Button } from "react-bootstrap";
 import { getClients } from "./ClientList";
 import axios from "axios";
+import { string } from "prop-types";
 
 const label = {
   float: "left"
@@ -11,6 +12,7 @@ const btnStyle = {
   padding: "10px",
   margin: "10px"
 };
+
 class ClientForm extends Component {
   constructor(props, context) {
     super(props, context);
@@ -21,19 +23,22 @@ class ClientForm extends Component {
       checked: false,
       userID: this.props.user,
       client: {},
-      fname: '',
-      lname: '',
-      phone: '',
-      zip: '', 
-      email: ''
+      fname: "",
+      lname: "",
+      phone: "",
+      zip: "",
+      email: "",
+      admin: false,
+      recNews: false
     };
-
 
     this.handleEditClick = this.handleEditClick.bind(this);
     this.handleCheckboxChange = this.handleCheckboxChange.bind(this);
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleDelete = this.handleDelete.bind(this);
+    this.handleRecClick = this.handleRecClick.bind(this);
+    this.handleAdminClick = this.handleAdminClick.bind(this);
   }
   componentDidMount() {
     getClients().then(val => {
@@ -45,14 +50,42 @@ class ClientForm extends Component {
     if (props.user !== this.state.userID) {
       this.setState({ userID: props.user });
       this.setState({ client: this.getClient(props.user) });
-      this.setState({fname: this.getClient(props.user) ? this.getClient(props.user).firstName : ""});
-      this.setState({lname: this.getClient(props.user) ? this.getClient(props.user).lastName : ""});
-      this.setState({phone: this.getClient(props.user) ? this.getClient(props.user).phone : ""});
-      this.setState({zip: this.getClient(props.user) ? this.getClient(props.user).zip : ""});
-      this.setState({email: this.getClient(props.user) ? this.getClient(props.user).email : ""});
+      this.setState({
+        fname: this.getClient(props.user)
+          ? this.getClient(props.user).firstName
+          : ""
+      });
+      this.setState({
+        lname: this.getClient(props.user)
+          ? this.getClient(props.user).lastName
+          : ""
+      });
+      this.setState({
+        phone: this.getClient(props.user)
+          ? this.getClient(props.user).phone
+          : ""
+      });
+      this.setState({
+        zip: this.getClient(props.user) ? this.getClient(props.user).zip : ""
+      });
+      this.setState({
+        email: this.getClient(props.user)
+          ? this.getClient(props.user).email
+          : ""
+      });
+      this.setState({
+        admin: this.getClient(props.user)
+          ? this.getClient(props.user).admin
+          : false
+      });
+      this.setState({
+        recNews: this.getClient(props.user)
+          ? this.getClient(props.user).recNews
+          : false
+      });
     }
 
-    this.setState({edit: false});
+    this.setState({ edit: false });
   }
   handleCheckboxChange(event) {
     this.setState({ checked: event.target.checked });
@@ -68,45 +101,56 @@ class ClientForm extends Component {
   }
 
   handleDelete() {
+    var answer = window.confirm("Are you sure you want to delete this client?");
+    if (!answer) {
+      return;
+    }
     const { client } = this.state;
     const { _id } = client;
 
-    
     axios
-    .post("/api/deleteclient", {
-      _id,
-    })
-    .catch(err => {
-      alert("error " + err);
-      return;
-    });
+      .post("/api/deleteclient", {
+        _id
+      })
+      .catch(err => {
+        alert("error " + err);
+        return;
+      });
 
-    alert('user has been deleted');
-      window.location.reload();
-
+    alert("user has been deleted");
+    window.location.reload();
   }
 
   handleEditClick() {
     this.setState({ edit: true });
   }
 
+  handleRecClick() {
+    this.setState({recNews: !this.state.recNews});
+  }
+  handleAdminClick() {
+    this.setState({admin: !this.state.admin});
+  }
+
   handleSubmit() {
-    const { client, fname, lname, phone, zip, email } = this.state;
+    const { client, fname, lname, phone, zip, email, admin, recNews } = this.state;
     const { _id } = client;
-    
+
     axios
-    .post("/api/modifyclient", {
-      _id,
-      fname,
-      lname,
-      phone,
-      zip,
-      email
-    })
-    .catch(err => {
-      alert("error " + err);
-      return;
-    });
+      .post("/api/modifyclient", {
+        _id,
+        fname,
+        lname,
+        phone,
+        zip,
+        email,
+        admin,
+        recNews
+      })
+      .catch(err => {
+        alert("error " + err);
+        return;
+      });
 
     this.setState({ edit: false });
   }
@@ -118,7 +162,18 @@ class ClientForm extends Component {
 
   render() {
     //const userID = this.props.user;
-    const { userID, client, edit, fname, lname, phone, zip, email } = this.state;
+    const {
+      userID,
+      client,
+      edit,
+      fname,
+      lname,
+      phone,
+      zip,
+      email,
+      admin,
+      recNews
+    } = this.state;
     const user = this.getClient(userID);
 
     return (
@@ -201,6 +256,30 @@ class ClientForm extends Component {
                 name="email"
                 defaultValue={email}
                 onChange={this.handleChange}
+              />
+            </Form.Group>
+          </Form.Row>
+          <Form.Row>
+            <Form.Group>
+              <Form.Check
+                inline
+                type="checkbox"
+                name="admin"
+                checked={admin}
+                label="Admin"
+                disabled={!edit}
+                onChange={this.handleAdminClick}
+              />
+            </Form.Group>
+            <Form.Group>
+              <Form.Check
+                inline
+                type="checkbox"
+                name="recNews"
+                checked={recNews}
+                label="Receive Newsletter"
+                disabled={!edit}
+                onChange={this.handleRecClick}
               />
             </Form.Group>
           </Form.Row>
