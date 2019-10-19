@@ -2,7 +2,6 @@ import React, { Component } from "react";
 import { Form, Col, Button } from "react-bootstrap";
 import { getClients } from "./ClientList";
 import axios from "axios";
-import { string } from "prop-types";
 
 const label = {
   float: "left"
@@ -122,7 +121,10 @@ class ClientForm extends Component {
   }
 
   handleEditClick() {
-    this.setState({ edit: true });
+    const userID = this.state.userID;
+    if (userID !== -1) {
+      this.setState({ edit: true });
+    }
   }
 
   handleRecClick() {
@@ -163,8 +165,6 @@ class ClientForm extends Component {
   render() {
     //const userID = this.props.user;
     const {
-      userID,
-      client,
       edit,
       fname,
       lname,
@@ -174,7 +174,6 @@ class ClientForm extends Component {
       admin,
       recNews
     } = this.state;
-    const user = this.getClient(userID);
 
     return (
       <>
