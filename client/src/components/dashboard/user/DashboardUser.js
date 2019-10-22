@@ -9,17 +9,31 @@ class DashboardUser extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			fname: "",
-			lname: "",
+			googleID:"",
+			firstName: "",
+			lastName: "",
 			email: "",
-			phone: "",
-			zip: ""
-			//	toggleSave: disabled,
-			//	toggleEdit: enabled
+			phone: "phone number (optional)",
+			zip: "zip",
+			toggleSave: true,
+			toggleEdit: false
 		};
 
 		this.handleChange = this.handleChange.bind(this);
 		this.handleSubmit = this.handleSubmit.bind(this);
+		this.toggle = this.toggle.bind(this);
+	
+		axios.get('/api/current_user')
+        .then(res => {this.setState({
+			googleID: res.data.googleID,
+			firstName: res.data.firstName,
+			lastName: res.data.lastName,
+			email: res.data.email
+		})})
+
+        .catch(err => {console.log(err)})
+		 
+
 	}
 
 	handleChange(event) {
@@ -27,26 +41,35 @@ class DashboardUser extends Component {
 	}
 
 	handleSubmit(event) {
-		const { fname, lname, email, phone, zip } = this.state;
-
+		const { googleID,firstName, lastName, email, phone, zip } = this.state;
+		
 
 		event.preventDefault();
-	
-	axios.post("/api/user/info",{
-		fname,
-		lname,
-		email,
-		phone,
-		zip
-	})
-		.catch(err => {
-			alert("error " + err);
-			return;
+		axios.post("/api/user/info", {
+			googleID,
+			firstName,
+			lastName,
+			email,
+			phone,
+			zip
 		})
-		
-	}
+			.catch(err => {
+				alert("error " + err);
+				return;
+			})
 
-	toggling() {
+	}
+	toggle() {
+		if (this.state.toggleSave
+		) {
+			this.setState({toggleEdit: true, toggleSave: false})
+		}
+		else if (!this.state.toggleSave
+		) {
+			this.setState({toggleEdit: false, toggleSave: true})
+
+		}
+
 
 	}
 
@@ -69,28 +92,28 @@ class DashboardUser extends Component {
 						<div className="container">
 							<Form onSubmit={this.handleSubmit}>
 								<div style={styling}>
-									<Button type="submit" style={btn} variant="success" >Save</Button>
-									<Button style={btn} variant="warning" onClick={this.toggling}>Edit </Button>
+									<Button type="submit" style={btn} variant="success" onClick={this.toggle}  disabled={this.state.toggleSave} >Save</Button>
+									<Button style={btn} variant="warning" onClick={this.toggle} disabled={this.state.toggleEdit} >Edit </Button>
 								</div>
 								<Form.Row>
 
 									<Form.Group as={Col} controlId="formGridFName">
 										<Form.Control
 											type="text"
-											placeholder="First Name"
-											name="fname"
+											placeholder={this.state.firstName}
+											name="firstName"
 											required
-
+											disabled={this.state.toggleSave}
 											onChange={this.handleChange}
 										/>
 									</Form.Group>
 									<Form.Group as={Col} controlId="formGridLName">
 										<Form.Control
 											type="text"
-											placeholder="Last Name"
-											name="lname"
+											placeholder={this.state.lastName}
+											name="lastName"
 											required
-
+											disabled={this.state.toggleSave}
 											onChange={this.handleChange}
 										/>
 									</Form.Group>
@@ -99,34 +122,33 @@ class DashboardUser extends Component {
 									<Form.Group as={Col} controlId="formGridEmail">
 										<Form.Control
 											type="email"
-											placeholder="Email"
+											placeholder={this.state.email}
 											name="email"
 											required
-
+											disabled={this.state.toggleSave}
 											onChange={this.handleChange}
 										/>
 									</Form.Group>
 									<Form.Group as={Col} controlId="formGridPhone">
 										<Form.Control
 											type="text"
-											placeholder="Phone Number (optional)"
+											placeholder={this.state.phone}
 											name="phone"
-
+											disabled={this.state.toggleSave}
 											onChange={this.handleChange}
 										/>
 									</Form.Group>
 									<Form.Group as={Col} controlId="formGridZip">
 										<Form.Control
 											type="text"
-											placeholder="Zip"
+											placeholder={this.state.zip}
 											name="zip"
-
+											disabled={this.state.toggleSave}
 											onChange={this.handleChange}
 										/>
 									</Form.Group>
 								</Form.Row>
 							</Form>
-
 							<User_invoices/>
 
 						</div>

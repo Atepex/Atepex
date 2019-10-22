@@ -1,10 +1,14 @@
 const mongoose = require('mongoose');
 const Invoice = mongoose.model("invoices");
+const User = mongoose.model('users')
 
 module.exports = app => {
     app.post('/api/user/info', (req, res) => {
-       const {fname,lname,email,phone,zip} = req.body;
-       res.send(fname,lname,email,phone,zip);
+       const {googleID,firstName,lastName,email,phone,zip} = req.body;
+       const user = new User({
+        googleID,firstName,lastName,email,phone,zip
+       })
+       user.save();
     });
 
     app.post('/api/getinvoices', async (req, res) => {
