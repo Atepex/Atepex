@@ -1,7 +1,7 @@
 import _ from "lodash";
 import React, { Component } from 'react';
 import { Dropdown } from 'react-bootstrap';
-import { getClients } from './ClientGetting';
+import { postClients } from './ClientGetting';
 
 class Client extends Component {
     constructor(props, context) {
@@ -12,7 +12,7 @@ class Client extends Component {
     }
 
     componentDidMount() {
-        getClients().then(val => {
+        postClients().then(val => {
             this.setState({clients: val.sort((a,b) => a.firstName.localeCompare(b.firstName))});
         })
         
@@ -24,19 +24,19 @@ class Client extends Component {
     }
 
     renderItems() {
-        return _.map(this.state.clients, ({ _id, firstName, lastName }) => {
+        return (({ _id, firstName, lastName }) => {
             return <Dropdown.Item onSelect={this.handleSelect} key={_id} value={_id} eventKey={_id}>{firstName + ' ' + lastName}</Dropdown.Item>;
         });
     }
 
     renderValue() {
         const idx = this.state.toggleValue;
-        const client = this.getClient(idx);
+        const client = this.postClient(idx);
         const name = client ? client.firstName + ' ' + client.lastName : "Select Client";
         return name;
     }
     
-    getClient(userID) {
+    postClient(userID) {
         return this.state.clients.find(function(element) {
             if (element._id === userID) {
                 return element;
