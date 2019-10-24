@@ -54,21 +54,6 @@ class InvoiceTable extends Component {
     const _id = props.user;
     this.getInvoices(_id);
   }
-  onRowClickDelete(_id) {
-    var answer = window.confirm(
-      "Are you sure you want to delete this invoice?"
-    );
-    if (!answer) {
-      return;
-    }
-
-    axios.post("/api/deleteinvoice", {
-      _id
-    });
-
-    this.getInvoices(this.state.userID);
-  }
-
 
   onRowClick(id) {
     const b = this.getInvoice(id).url;
@@ -123,18 +108,6 @@ class InvoiceTable extends Component {
               src={viewImg}
               style={viewStyle}
               onClick={() => this.onRowClick(_id)}
-            />
-          </OverlayTrigger>
-          <OverlayTrigger
-            key="3"
-            placement="top"
-            overlay={<Tooltip>Delete Invoice</Tooltip>}
-          >
-            <img
-              alt="delete-img"
-              src={deleteImg}
-              style={imgStyle}
-              onClick={() => this.onRowClickDelete(_id)}
             />
           </OverlayTrigger>
         </>
@@ -234,4 +207,4 @@ class InvoiceTable extends Component {
   }
 }
 
-export default InvoiceTable;
+export default InvoiceTableUser;
