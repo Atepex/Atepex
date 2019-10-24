@@ -27,7 +27,7 @@ const idStyle = {
   backgroundColor: "transparent"
 };
 
-class InvoiceTable extends Component {
+class InvoiceTableUser extends Component {
   constructor(props, context) {
     super(props, context);
 
@@ -80,80 +80,6 @@ class InvoiceTable extends Component {
       }
       return false;
     });
-  }
-
-  renderActions(_id) {
-    if (this.state.editInvoice && this.state.rowID === _id) {
-      return (
-        <>
-          <OverlayTrigger
-            key="1"
-            placement="top"
-            overlay={<Tooltip>Save Changes</Tooltip>}
-          >
-            <img
-              alt="save-img"
-              src={saveImg}
-              style={saveStyle}
-              onClick={() => this.onRowSaveClick(_id)}
-            />
-          </OverlayTrigger>
-          <OverlayTrigger
-            key="2"
-            placement="top"
-            overlay={<Tooltip>View Invoice</Tooltip>}
-          >
-            <img
-              alt="view-img"
-              src={viewImg}
-              style={viewStyle}
-              onClick={() => this.onRowClick(_id)}
-            />
-          </OverlayTrigger>
-        </>
-      );
-    }
-
-    return (
-      <>
-        <OverlayTrigger
-          key="4"
-          placement="top"
-          overlay={<Tooltip>Edit Invoice</Tooltip>}
-        >
-          <img
-            alt="edit-img"
-            src={editImg}
-            style={editStyle}
-            onClick={() => this.onRowEditClick(_id)}
-          />
-        </OverlayTrigger>
-        <OverlayTrigger
-          key="5"
-          placement="top"
-          overlay={<Tooltip>View Invoice</Tooltip>}
-        >
-          <img
-            alt="view-img"
-            src={viewImg}
-            style={viewStyle}
-            onClick={() => this.onRowClick(_id)}
-          />
-        </OverlayTrigger>
-        <OverlayTrigger
-          key="6"
-          placement="top"
-          overlay={<Tooltip>Delete Invoice</Tooltip>}
-        >
-          <img
-            alt="delete-img"
-            src={deleteImg}
-            style={imgStyle}
-            onClick={() => this.onRowClickDelete(_id)}
-          />
-        </OverlayTrigger>
-      </>
-    );
   }
 
   renderBody() {

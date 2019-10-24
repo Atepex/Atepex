@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import { Form, Col, Button, Tabs, Tab, Container, Row } from "react-bootstrap";
 import { connect } from 'react-redux';
-import axios from 'axios'
+import ViewClientInfo from "./ViewClientInfo";
+import axios from 'axios';
 
 class DashboardUser extends Component {
 
