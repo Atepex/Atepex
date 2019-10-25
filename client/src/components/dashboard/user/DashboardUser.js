@@ -9,7 +9,7 @@ class DashboardUser extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			googleID:"",
+			_id:"",
 			firstName: "",
 			lastName: "",
 			email: "",
@@ -25,7 +25,7 @@ class DashboardUser extends Component {
 	
 		axios.get('/api/current_user')
         .then(res => {this.setState({
-			googleID: res.data.googleID,
+			_id: res.data._id,
 			firstName: res.data.firstName,
 			lastName: res.data.lastName,
 			email: res.data.email
@@ -41,12 +41,12 @@ class DashboardUser extends Component {
 	}
 
 	handleSubmit(event) {
-		const { googleID,firstName, lastName, email, phone, zip } = this.state;
+		const { _id,firstName, lastName, email, phone, zip } = this.state;
 		
 
 		event.preventDefault();
-		axios.post("/api/user/info", {
-			googleID,
+		axios.post("api/user/info/modify", {
+			_id,
 			firstName,
 			lastName,
 			email,
@@ -57,7 +57,7 @@ class DashboardUser extends Component {
 				alert("error " + err);
 				return;
 			})
-
+			this.toggle();
 	}
 	toggle() {
 		if (this.state.toggleSave
@@ -92,7 +92,7 @@ class DashboardUser extends Component {
 						<div className="container">
 							<Form onSubmit={this.handleSubmit}>
 								<div style={styling}>
-									<Button type="submit" style={btn} variant="success" onClick={this.toggle}  disabled={this.state.toggleSave} >Save</Button>
+									<Button type="submit" style={btn} variant="success"  disabled={this.state.toggleSave} >Save</Button>
 									<Button style={btn} variant="warning" onClick={this.toggle} disabled={this.state.toggleEdit} >Edit </Button>
 								</div>
 								<Form.Row>
