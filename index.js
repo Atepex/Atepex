@@ -10,6 +10,7 @@ require('./models/Contact');
 require('./models/Schedule');
 require("./models/Invoice");
 require('./services/passport');
+require('./models/Invoice');
 
 
 
@@ -36,6 +37,8 @@ require('./routes/settingRoutes')(app);
 require('./routes/contactRoutes')(app);
 require('./routes/scheduleRoutes')(app);
 require('./routes/clientRoutes')(app);
+require('./routes/invoiceRoutes')(app);
+
 require('./routes/userInvoiceRoute')(app);
 
 

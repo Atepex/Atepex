@@ -1,3 +1,58 @@
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 import React, { Component } from 'react';
 import { Row, Col } from 'react-bootstrap';
 import Clients from './Clients';
@@ -47,6 +102,7 @@ class ViewClients extends Component {
                             <InvoiceTable refresh={this.state.refresh} user={this.state.userID} />
                             </Col> 
                         </Row>
+                        
                     </div>
                 </section>
             </>

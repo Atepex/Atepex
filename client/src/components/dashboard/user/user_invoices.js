@@ -1,9 +1,15 @@
 import React, { Component } from 'react'
 import axios from 'axios'
 import { connect } from 'react-redux';
-import { Table } from "react-bootstrap";
 import _ from "lodash";
+import { Table, OverlayTrigger, Tooltip } from "react-bootstrap";
+import viewImg from "../../../images/view.png";
 
+const viewStyle = {
+  maxWidth: "38px",
+  maxHeight: "38px",
+  padding: "5px"
+};
 
 const inputStyle = {
     border: "none",
@@ -43,6 +49,15 @@ class User_invoices extends Component {
         const _id = props.auth._id;
         this.getInvoices(_id);
       }
+
+      onRowClick(id) {
+        const b = this.getInvoice(id).url;
+        var buf = new Buffer(b, 'base64');
+        var blob = new Blob([buf], { type: 'application/pdf' });
+        var url = URL.createObjectURL(blob);
+        window.open(url);
+        
+      }
     
       async getInvoices(_id) {
         await axios
@@ -54,6 +69,33 @@ class User_invoices extends Component {
           });
       }
 
+      getInvoice(_id) {
+        return this.state.invoices.find(function(element) {
+          if (element._id === _id) {
+            return element;
+          }
+          return false;
+        });
+      }
+
+      renderActions(_id) {
+        return (
+          <>
+            <OverlayTrigger
+              key="2"
+              placement="top"
+              overlay={<Tooltip>View Invoice</Tooltip>}
+            >
+              <img
+                alt="view-img"
+                src={viewImg}
+                style={viewStyle}
+                onClick={() => this.onRowClick(_id)}
+              />
+            </OverlayTrigger>
+          </>
+        );
+    }
     
       renderBody() {
         const { invoices} = this.state;
@@ -62,6 +104,7 @@ class User_invoices extends Component {
 
           return (
             <tr >
+            <td>{this.renderActions(_id)}</td>
               <td>
                 <input
                   style={idStyle}
@@ -94,6 +137,7 @@ class User_invoices extends Component {
                 <Table striped hover size="sm" responsive>
                     <thead>
                         <tr>
+                            <th></th>
                             <th>InvoiceID</th>
                             <th>Invoice Date</th>
                             <th>Invoice Description</th>
