@@ -4,15 +4,15 @@ const User = mongoose.model('users')
 
 module.exports = app => {
     app.post('/api/user/info', (req, res) => {
-       const {_id,firstName,lastName,email,phone,zip} = req.body;
+       const {_id,firstName,lastName,email,phone,zip,recNews} = req.body;
        const user = new User({
-        _id,firstName,lastName,email,phone,zip
+        _id,firstName,lastName,email,phone,zip,recNews
        })
        user.save();
       });
       
       app.post('/api/user/info/modify',(req,res) =>{
-        const {_id,firstName,lastName,email,phone,zip} = req.body;
+        const {_id,firstName,lastName,email,phone,zip,recNews} = req.body;
         User.findOne({
           _id: _id
         },function(err,user){
@@ -20,7 +20,8 @@ module.exports = app => {
           user.lastName = lastName,
           user.email = email,
           user.phone = phone,
-          user.zip = zip
+          user.zip = zip,
+          user.recNews = recNews
           user.save()
         })
       })

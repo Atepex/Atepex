@@ -29,7 +29,7 @@ class User_invoices extends Component {
           rowID: "",
           rowInvoiceID: "",
           rowInvoiceDesc: "",
-          rowInvoiceData: {}
+          rowInvoiceData: {},
         };
         this.handleChange = this.handleChange.bind(this);
       }
