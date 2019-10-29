@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Form, Col, Button, Tabs, Tab, Container, Row } from "react-bootstrap";
+import { Form, Col, Button, Label } from "react-bootstrap";
 import { connect } from 'react-redux';
 import axios from 'axios'
 import User_invoices from './user_invoices'
@@ -16,9 +16,17 @@ const styling3 = {
 	marginBottom: '25px',
 	float: 'left'
 }
+
+const bottomMargin = {
+	marginBottom: '100px'
+}
 const btn = {
 	margin: '0 5px'
 }
+
+const label = {
+	float: "left"
+};
 
 class DashboardUser extends Component {
 
@@ -48,9 +56,9 @@ class DashboardUser extends Component {
 					firstName: res.data.firstName,
 					lastName: res.data.lastName,
 					email: res.data.email,
-					phone:res.data.phone,
-					zip:res.data.zip,
-					recNews:res.data.recNews
+					phone: res.data.phone,
+					zip: res.data.zip,
+					recNews: res.data.recNews
 				})
 			})
 
@@ -64,7 +72,7 @@ class DashboardUser extends Component {
 	}
 
 	handleSubmit(event) {
-		const { _id, firstName, lastName, email, phone, zip,recNews } = this.state;
+		const { _id, firstName, lastName, email, phone, zip, recNews } = this.state;
 
 
 		event.preventDefault();
@@ -98,11 +106,11 @@ class DashboardUser extends Component {
 
 	handleRec() {
 
-		if(this.state.recNews){
-			this.setState({recNews: false })
+		if (this.state.recNews) {
+			this.setState({ recNews: false })
 		}
-		else if(!this.state.recNews){
-			this.setState({recNews: true })
+		else if (!this.state.recNews) {
+			this.setState({ recNews: true })
 		}
 
 	}
@@ -129,6 +137,7 @@ class DashboardUser extends Component {
 									<Form.Row>
 
 										<Form.Group as={Col} controlId="formGridFName">
+											<Form.Label style={label}>First Name:</Form.Label>
 											<Form.Control
 												type="text"
 												placeholder={this.state.firstName}
@@ -139,6 +148,7 @@ class DashboardUser extends Component {
 											/>
 										</Form.Group>
 										<Form.Group as={Col} controlId="formGridLName">
+											<Form.Label style={label}>Last Name:</Form.Label>
 											<Form.Control
 												type="text"
 												placeholder={this.state.lastName}
@@ -150,17 +160,8 @@ class DashboardUser extends Component {
 										</Form.Group>
 									</Form.Row>
 									<Form.Row>
-										<Form.Group as={Col} controlId="formGridEmail">
-											<Form.Control
-												type="email"
-												placeholder={this.state.email}
-												name="email"
-												required
-												disabled={this.state.toggleSave}
-												onChange={this.handleChange}
-											/>
-										</Form.Group>
 										<Form.Group as={Col} controlId="formGridPhone">
+											<Form.Label style={label}>Phone:</Form.Label>
 											<Form.Control
 												type="text"
 												placeholder={this.state.phone}
@@ -170,6 +171,7 @@ class DashboardUser extends Component {
 											/>
 										</Form.Group>
 										<Form.Group as={Col} controlId="formGridZip">
+											<Form.Label style={label}>Zip Code:</Form.Label>
 											<Form.Control
 												type="text"
 												placeholder={this.state.zip}
@@ -179,6 +181,20 @@ class DashboardUser extends Component {
 											/>
 										</Form.Group>
 									</Form.Row>
+									<Form.Row>
+										<Form.Group as={Col} controlId="formGridEmail">
+											<Form.Label style={label}>Email:</Form.Label>
+											<Form.Control
+												type="email"
+												placeholder={this.state.email}
+												name="email"
+												required
+												disabled={this.state.toggleSave}
+												onChange={this.handleChange}
+											/>
+										</Form.Group>
+									</Form.Row>
+
 								</div>
 
 								<div style={styling3}>
@@ -193,7 +209,7 @@ class DashboardUser extends Component {
 								</div>
 
 							</Form>
-							<div style={styling}>
+							<div style={bottomMargin}>
 								<User_invoices />
 							</div>
 
