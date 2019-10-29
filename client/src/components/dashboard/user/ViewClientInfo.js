@@ -35,6 +35,10 @@ class ViewClientInfo extends Component {
                             <Col  md={15} lg={8} xl={8}>
                                 <ClientForm user={this.state.userID} />
                             </Col> 
+                            <Col  md={15} lg={8} xl={8}>
+
+                            <InvoiceTableUser refresh={this.state.refresh} user={this.state.userID} />
+                            </Col> 
                         </Row>
                     </div>
                 </section>

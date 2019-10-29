@@ -82,14 +82,35 @@ class InvoiceTableUser extends Component {
     });
   }
 
+  renderActions(_id) {
+      return (
+        <>
+          <OverlayTrigger
+            key="2"
+            placement="top"
+            overlay={<Tooltip>View Invoice</Tooltip>}
+          >
+            <img
+              alt="view-img"
+              src={viewImg}
+              style={viewStyle}
+              onClick={() => this.onRowClick(_id)}
+            />
+          </OverlayTrigger>
+        </>
+      );
+  }
+
   renderBody() {
-    const { invoices, editInvoice, rowID } = this.state;
+    const { invoices, rowID } = this.state;
     return _.map(invoices, ({ _id, invoiceID, invoiceDate, invoiceDesc }) => {
-      const ro = editInvoice && rowID === _id;
+      const ro = rowID === _id;
       const d = new Date(invoiceDate).toLocaleDateString('en-US');
       return (
         <tr key={_id}>
-          <td>{this.renderActions(_id)}</td>
+          {/*<td>{this.renderActions(_id)}</td>*/}
+          <td>test</td>
+
           <td>
             <input
               style={idStyle}
