@@ -9,7 +9,7 @@ class DashboardUser extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			_id:"",
+			_id: "",
 			firstName: "",
 			lastName: "",
 			email: "",
@@ -22,17 +22,19 @@ class DashboardUser extends Component {
 		this.handleChange = this.handleChange.bind(this);
 		this.handleSubmit = this.handleSubmit.bind(this);
 		this.toggle = this.toggle.bind(this);
-	
-		axios.get('/api/current_user')
-        .then(res => {this.setState({
-			_id: res.data._id,
-			firstName: res.data.firstName,
-			lastName: res.data.lastName,
-			email: res.data.email
-		})})
 
-        .catch(err => {console.log(err)})
-		 
+		axios.get('/api/current_user')
+			.then(res => {
+				this.setState({
+					_id: res.data._id,
+					firstName: res.data.firstName,
+					lastName: res.data.lastName,
+					email: res.data.email
+				})
+			})
+
+			.catch(err => { console.log(err) })
+
 
 	}
 
@@ -41,8 +43,8 @@ class DashboardUser extends Component {
 	}
 
 	handleSubmit(event) {
-		const { _id,firstName, lastName, email, phone, zip } = this.state;
-		
+		const { _id, firstName, lastName, email, phone, zip } = this.state;
+
 
 		event.preventDefault();
 		axios.post("api/user/info/modify", {
@@ -57,16 +59,16 @@ class DashboardUser extends Component {
 				alert("error " + err);
 				return;
 			})
-			this.toggle();
+		this.toggle();
 	}
 	toggle() {
 		if (this.state.toggleSave
 		) {
-			this.setState({toggleEdit: true, toggleSave: false})
+			this.setState({ toggleEdit: true, toggleSave: false })
 		}
 		else if (!this.state.toggleSave
 		) {
-			this.setState({toggleEdit: false, toggleSave: true})
+			this.setState({ toggleEdit: false, toggleSave: true })
 
 		}
 
@@ -78,23 +80,34 @@ class DashboardUser extends Component {
 		const styling = {
 			marginBottom: '25px',
 		}
+
+		const styling2 = {
+			marginTop: '-50px',
+		}
+
+		const styling3 = {
+			marginBottom: '25px',
+			float: 'left'
+		}
 		const btn = {
 			margin: '0 5px'
 		}
 		return (
-			<div id="main">
+			<div id="main" style={styling2}>
 				<div id="content">
 					<section>
 						<h2>
 							Update information
 						</h2>
 
-						<div className="container">
+						<div className="container" >
 							<Form onSubmit={this.handleSubmit}>
 								<div style={styling}>
-									<Button type="submit" style={btn} variant="success"  disabled={this.state.toggleSave} >Save</Button>
+									<Button type="submit" style={btn} variant="success" disabled={this.state.toggleSave} >Save</Button>
 									<Button style={btn} variant="warning" onClick={this.toggle} disabled={this.state.toggleEdit} >Edit </Button>
 								</div>
+
+								<div>
 								<Form.Row>
 
 									<Form.Group as={Col} controlId="formGridFName">
@@ -148,8 +161,16 @@ class DashboardUser extends Component {
 										/>
 									</Form.Group>
 								</Form.Row>
+								</div>
+
+								<div style={styling3}>
+									<Form.Check type="checkbox" label="Receive Newsletter" />
+								</div>
+
 							</Form>
-							<User_invoices/>
+							<div style={styling}>
+								<User_invoices />
+							</div>
 
 						</div>
 					</section>
