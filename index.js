@@ -18,6 +18,7 @@ mongoose.connect(keys.mongoURI, { useNewUrlParser: true })
 	.catch(err => {
 		console.log(err);
 	});
+	
 const app = express();
 
 app.use(bodyParser.json());
@@ -39,6 +40,7 @@ require('./routes/clientRoutes')(app);
 require('./routes/invoiceRoutes')(app);
 
 require('./routes/userInvoiceRoute')(app);
+
 
 if (process.env.NODE_ENV === 'production') {
 	app.use(express.static('client/build'));
