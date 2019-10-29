@@ -37,8 +37,8 @@ class DashboardUser extends Component {
 			firstName: "",
 			lastName: "",
 			email: "",
-			phone: "phone number (optional)",
-			zip: "zip",
+			phone: "",
+			zip: "",
 			toggleSave: true,
 			toggleEdit: false,
 			recNews: false
@@ -140,7 +140,8 @@ class DashboardUser extends Component {
 											<Form.Label style={label}>First Name:</Form.Label>
 											<Form.Control
 												type="text"
-												placeholder={this.state.firstName}
+												defaultValue={this.state.firstName}
+												placeholder="First Name"
 												name="firstName"
 												required
 												disabled={this.state.toggleSave}
@@ -151,7 +152,8 @@ class DashboardUser extends Component {
 											<Form.Label style={label}>Last Name:</Form.Label>
 											<Form.Control
 												type="text"
-												placeholder={this.state.lastName}
+												defaultValue={this.state.lastName}
+												placeholder="Last Name"
 												name="lastName"
 												required
 												disabled={this.state.toggleSave}
@@ -164,7 +166,8 @@ class DashboardUser extends Component {
 											<Form.Label style={label}>Phone:</Form.Label>
 											<Form.Control
 												type="text"
-												placeholder={this.state.phone}
+												defaultValue={this.state.phone}
+												placeholder="Phone"
 												name="phone"
 												disabled={this.state.toggleSave}
 												onChange={this.handleChange}
@@ -174,7 +177,8 @@ class DashboardUser extends Component {
 											<Form.Label style={label}>Zip Code:</Form.Label>
 											<Form.Control
 												type="text"
-												placeholder={this.state.zip}
+												defaultValue={this.state.zip}
+												placeholder="Zip Code"
 												name="zip"
 												disabled={this.state.toggleSave}
 												onChange={this.handleChange}
@@ -186,7 +190,8 @@ class DashboardUser extends Component {
 											<Form.Label style={label}>Email:</Form.Label>
 											<Form.Control
 												type="email"
-												placeholder={this.state.email}
+												defaultValue={this.state.email}
+												placeholder="Email"
 												name="email"
 												required
 												disabled={this.state.toggleSave}
