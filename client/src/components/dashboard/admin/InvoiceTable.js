@@ -57,12 +57,10 @@ class InvoiceTable extends Component {
     this.handleChange = this.handleChange.bind(this);
   }
   handleChange(event) {
-    console.log(event.target.name);
     this.setState({ [event.target.name]: event.target.value });
   }
 
   componentWillReceiveProps(props) {
-    console.log('props ' + props.refresh);
     this.setState({ userID: props.user });
     const _id = props.user;
     this.getInvoices(_id);
@@ -108,7 +106,6 @@ class InvoiceTable extends Component {
     
      axios.post("/api/modifyinvoice", {
       _id, 
-      invoiceID,
       invoiceDesc
     }).catch(err => {
       alert('Unable to save changes');
@@ -232,14 +229,7 @@ class InvoiceTable extends Component {
         <tr key={_id}>
           <td>{this.renderActions(_id)}</td>
           <td>
-            <input
-              style={idStyle}
-              readOnly
-              type="text"
-              name="rowInvoiceID"
-              onChange={this.handleChange}
-              defaultValue={invoiceID}
-            />
+            {invoiceID}
           </td>
           <td>{d}</td>
           <td>

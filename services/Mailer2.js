@@ -24,6 +24,19 @@ class Mailer2 extends helper.Mail {
     };
     sgMail.send(msg);
   }
+
+  async sendMultiple() {
+    const {content, recipient, subject } = this.state;
+    const sgMail = require("@sendgrid/mail");
+    sgMail.setApiKey(keys.sendGridKey);
+    const msg = {
+      to: recipient,
+      from: "support@vaughns.com",
+      subject: subject,
+      text: content
+    };
+    sgMail.sendMultiple(msg);
+  }
 }
 
 module.exports = Mailer2;

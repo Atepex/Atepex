@@ -20,7 +20,7 @@ async function SaveInvoice(arrayBuffer, invoiceID, userID) {
     invoiceDate,
     url
   });
-  console.log('saved');
+ 
 }
 
 class Uploader extends Component {
@@ -39,6 +39,7 @@ class Uploader extends Component {
   }
 
   onFilesChange(files) {
+  
     const userID = this.state.userID;
     if (userID === "") {
       alert("You must first select a client");
@@ -62,7 +63,7 @@ class Uploader extends Component {
       SaveInvoice(arrayBuffer, invoiceID, this.state.userID).then(() => {
         this.props.parentCallback('true');
       });
-      console.log('callback');
+
 
     };
   }

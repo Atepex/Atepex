@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { Tabs, Tab } from "react-bootstrap";
 import ViewClients from "./ViewClients";
+import EmailClients from './EmailClients';
 
 class DashboardAdmin extends Component {
   render() {
@@ -12,7 +13,7 @@ class DashboardAdmin extends Component {
               <ViewClients />
             </Tab>
             <Tab eventKey="emailClients" title="Email Clients">
-              <h3>Email Clients</h3>
+              <EmailClients />
             </Tab>
           </Tabs>
         </div>

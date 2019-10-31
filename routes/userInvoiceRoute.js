@@ -30,10 +30,9 @@ module.exports = app => {
   });
 
   app.post("/api/modifyinvoice", async (req, res) => {
-    const { _id, invoiceID, invoiceDesc } = req.body;
+    const { _id, invoiceDesc } = req.body;
     Invoice.findOne({ _id: _id }, function(err, inv) {
       if (!err) {
-        inv.invoiceID = invoiceID;
         inv.invoiceDesc = invoiceDesc;
         inv.save();
         return res.status(200).send("successful");
