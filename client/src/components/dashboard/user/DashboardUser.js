@@ -3,7 +3,7 @@ import { Form, Col, Button, Label } from "react-bootstrap";
 import { connect } from 'react-redux';
 import axios from 'axios'
 import User_invoices from './user_invoices'
-
+import ScheduleBtn from './ScheduleBtn'
 
 const styling = {
 	marginBottom: '25px',
@@ -65,9 +65,9 @@ class DashboardUser extends Component {
 
 			.catch(err => { console.log(err) })
 
-
 	}
 
+	
 	handleChange(event) {
 		this.setState({ [event.target.name]: event.target.value });
 	}
@@ -132,6 +132,11 @@ class DashboardUser extends Component {
 								<div style={styling}>
 									<Button type="submit" style={btn} variant="success" disabled={this.state.toggleSave} >Save</Button>
 									<Button style={btn} variant="warning" onClick={this.toggle} disabled={this.state.toggleEdit} >Edit </Button>
+									<ScheduleBtn fname={this.state.firstName}
+												lname={this.state.lastName}
+												zip= {this.state.zip}
+												phone= {this.state.phone}
+												email= {this.state.email}/>
 								</div>
 
 								<div>
