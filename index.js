@@ -10,6 +10,7 @@ require('./models/Contact');
 require('./models/Schedule');
 require("./models/Invoice");
 require('./services/passport');
+require('./models/Invoice');
 
 
 
@@ -17,6 +18,7 @@ mongoose.connect(keys.mongoURI, { useNewUrlParser: true })
 	.catch(err => {
 		console.log(err);
 	});
+	
 const app = express();
 
 app.use(bodyParser.json());
@@ -35,7 +37,10 @@ require('./routes/settingRoutes')(app);
 require('./routes/contactRoutes')(app);
 require('./routes/scheduleRoutes')(app);
 require('./routes/clientRoutes')(app);
+require('./routes/invoiceRoutes')(app);
+
 require('./routes/userInvoiceRoute')(app);
+
 
 if (process.env.NODE_ENV === 'production') {
 	app.use(express.static('client/build'));

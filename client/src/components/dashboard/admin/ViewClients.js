@@ -1,9 +1,10 @@
-import React, { Component } from "react";
-import { Row, Col } from "react-bootstrap";
-import Clients from "./Clients";
-import ClientForm from "./ClientForm";
-import InvoiceTable from "./InvoiceTable";
-import Uploader from "./Uploader";
+import React, { Component } from 'react';
+import { Row, Col } from 'react-bootstrap';
+import Clients from './Clients';
+import ClientForm from './ClientForm';
+import InvoiceTable from './InvoiceTable';
+import Uploader from './Uploader';
+
 
 class ViewClients extends Component {
   constructor(props, context) {
