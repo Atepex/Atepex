@@ -17,38 +17,6 @@ import states from "../../landing/schedule/states";
 
 class JumbotronCmp extends Component {
 
-    constructor(props){
-        super(props)
-    }
-    handleSubmit(event) {
-        const { fname, lname, street, city, stateAbbrv, zip, service, time, comments, phone, email } = this.props;
-        const subject = "Schedule Appointment";
-        const sendTo = 'emeryhaddy@gmail.com';
-
-        console.log(email + phone);
-        axios
-            .post("/api/schedulenow", {
-                fname,
-                lname,
-                street,
-                city,
-                stateAbbrv,
-                zip,
-                service,
-                time,
-                comments,
-                subject,
-                sendTo,
-                phone,
-                email
-            })
-            .catch(err => {
-                alert("error " + err);
-                return;
-            });
-
-        alert('Email Sent');
-    }
 
     renderItems(items) {
         return _.map(items, ({ name, value }) => {
@@ -69,7 +37,7 @@ class JumbotronCmp extends Component {
                         <Modal.Title>Schedule Now</Modal.Title>
                     </Modal.Header>
                     <Modal.Body>
-                        <Form onSubmit={this.handleSubmit}>
+                        <Form onSubmit={this.props.handleSubmitSchedule}>
                             <Form.Row>
                                 <Form.Group as={Col} controlId="modalFName">
                                     <Form.Control

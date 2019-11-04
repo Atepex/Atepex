@@ -60,6 +60,7 @@ class DashboardUser extends Component {
 		//ScheduleBtn functions
 		this.handleShow =this.handleShow.bind(this);
 		this.handleClose =this.handleClose.bind(this);
+		this.handleSubmitSchedule = this.handleSubmitSchedule.bind(this);
 
 		axios.get('/api/current_user')
 			.then(res => {
@@ -77,6 +78,7 @@ class DashboardUser extends Component {
 			.catch(err => { console.log(err) })
 
 	}
+		//ScheduleBtn functions
 
 	setShow(value) {
 		this.setState({ show: value });
@@ -84,7 +86,37 @@ class DashboardUser extends Component {
 
     handleClose = () => this.setShow(false);
 	handleShow = () => this.setShow(true);
+
 	
+    handleSubmitSchedule(event) {
+		const { firstName, lastName, street, city, stateAbbrv, zip, service, time, comments, phone, email } = this.state;
+        const subject = "Schedule Appointment";
+        const sendTo = 'matthewrenda14@gmail.com';
+        axios
+            .post("/api/schedulenow", {
+                firstName,
+                lastName,
+                street,
+                city,
+                stateAbbrv,
+                zip,
+                service,
+                time,
+                comments,
+                subject,
+                sendTo,
+                phone,
+                email
+            })
+            .catch(err => {
+                alert("error " + err);
+                return;
+            });
+
+        alert('Email Sent');
+    }
+	
+	//**************************************************************** */
 	handleChange(event) {
 		this.setState({ [event.target.name]: event.target.value });
 	}
@@ -158,6 +190,7 @@ class DashboardUser extends Component {
 												handleShow = {this.handleShow}
 												handleClose = {this.handleClose}
 												handleChange = {this.handleChange}
+												handleSubmitSchedule = {this.handleSubmitSchedule}
 												show = {this.state.show}
 												street = {this.state.street}
 												city = {this.state.city}
