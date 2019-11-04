@@ -42,13 +42,24 @@ class DashboardUser extends Component {
 			zip: "",
 			toggleSave: true,
 			toggleEdit: false,
-			recNews: false
+			recNews: false,
+			// ScheduleBtn props
+			show: false,
+            street: "",
+            city: "",
+            stateAbbrv: "CA",
+            comments: "",
+            service: "",
+            time: "",
 		};
 
 		this.handleChange = this.handleChange.bind(this);
 		this.handleSubmit = this.handleSubmit.bind(this);
 		this.toggle = this.toggle.bind(this);
 		this.handleRec = this.handleRec.bind(this);
+		//ScheduleBtn functions
+		this.handleShow =this.handleShow.bind(this);
+		this.handleClose =this.handleClose.bind(this);
 
 		axios.get('/api/current_user')
 			.then(res => {
@@ -67,6 +78,12 @@ class DashboardUser extends Component {
 
 	}
 
+	setShow(value) {
+		this.setState({ show: value });
+    }
+
+    handleClose = () => this.setShow(false);
+	handleShow = () => this.setShow(true);
 	
 	handleChange(event) {
 		this.setState({ [event.target.name]: event.target.value });
@@ -132,14 +149,23 @@ class DashboardUser extends Component {
 								<div style={styling}>
 									<Button type="submit" style={btn} variant="success" disabled={this.state.toggleSave} >Save</Button>
 									<Button style={btn} variant="warning" onClick={this.toggle} disabled={this.state.toggleEdit} >Edit </Button>
+
 									<ScheduleBtn fname={this.state.firstName}
 												lname={this.state.lastName}
 												zip= {this.state.zip}
 												phone= {this.state.phone}
-												email= {this.state.email}/>
-								</div>
-
-								<div>
+												email= {this.state.email}
+												handleShow = {this.handleShow}
+												handleClose = {this.handleClose}
+												handleChange = {this.handleChange}
+												show = {this.state.show}
+												street = {this.state.street}
+												city = {this.state.city}
+												stateAbbrv = {this.state.stateAbbrv}
+												comments ={this.state.comments}
+												service ={this.state.service}
+												time = {this.state.time}/>
+							
 									<Form.Row>
 
 										<Form.Group as={Col} controlId="formGridFName">
