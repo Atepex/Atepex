@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { Tabs, Tab } from "react-bootstrap";
 import ViewClients from "./ViewClients";
 import EmailClients from './EmailClients';
+import UploadImage from './UploadImage';
 
 class DashboardAdmin extends Component {
   render() {
@@ -14,6 +15,9 @@ class DashboardAdmin extends Component {
             </Tab>
             <Tab eventKey="emailClients" title="Email Clients">
               <EmailClients />
+            </Tab>
+            <Tab eventKey="uploadImage" title="Upload Image">
+              <UploadImage />
             </Tab>
           </Tabs>
         </div>

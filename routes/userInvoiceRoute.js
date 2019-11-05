@@ -1,6 +1,6 @@
 const mongoose = require("mongoose");
 const Invoice = mongoose.model("invoices");
-const User = mongoose.model('users')
+const User = mongoose.model('users');
 
 module.exports = app => {
     app.post('/api/user/info', (req, res) => {

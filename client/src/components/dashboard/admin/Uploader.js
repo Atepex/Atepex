@@ -60,6 +60,7 @@ class Uploader extends Component {
     reader.readAsArrayBuffer(file);
     reader.onload = () => {
       var arrayBuffer = reader.result;
+      console.log('ab ' + JSON.stringify(arrayBuffer));
       SaveInvoice(arrayBuffer, invoiceID, this.state.userID).then(() => {
         this.props.parentCallback('true');
       });

@@ -4,6 +4,7 @@ const keys = require('./config/keys');
 const cookieSession = require('cookie-session');
 const passport = require('passport');
 const bodyParser = require('body-parser');
+
 require('./models/User');
 require('./models/SystemSettings');
 require('./models/Contact');
@@ -11,7 +12,7 @@ require('./models/Schedule');
 require("./models/Invoice");
 require('./services/passport');
 require('./models/Invoice');
-
+require('./models/Images');
 
 
 mongoose.connect(keys.mongoURI, { useNewUrlParser: true })
@@ -20,8 +21,16 @@ mongoose.connect(keys.mongoURI, { useNewUrlParser: true })
 	});
 	
 const app = express();
+app.use(bodyParser.urlencoded({
+    limit: '5mb',
+    parameterLimit: 100000,
+    extended: false 
+}));
 
-app.use(bodyParser.json());
+app.use(bodyParser.json({
+    limit: '5mb'
+}));
+
 
 app.use(
 	cookieSession({
