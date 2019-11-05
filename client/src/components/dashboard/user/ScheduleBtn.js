@@ -16,71 +16,7 @@ import states from "../../landing/schedule/states";
 
 
 class JumbotronCmp extends Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            show: false,
-            fname: props.fname,
-            lname: props.lname,
-            street: "",
-            city: "",
-            stateAbbrv: "CA",
-            zip: props.zip,
-            comments: "",
-            service: "",
-            time: "",
-            phone: props.phone,
-            email: props.email
-        };
-        console.log(props)
-        
-        this.handleChange = this.handleChange.bind(this);
-        this.handleSubmit = this.handleSubmit.bind(this);
-    }
 
-    handleChange(event) {
-        this.setState({ [event.target.name]: event.target.value });
-    }
-
-    handleSubmit(event) {
-        const { fname, lname, street, city, stateAbbrv, zip, service, time, comments, phone, email } = this.state;
-        const subject = "Schedule Appointment";
-        const sendTo = 'emeryhaddy@gmail.com';
-
-        console.log(email + phone);
-        axios
-            .post("/api/schedulenow", {
-                fname,
-                lname,
-                street,
-                city,
-                stateAbbrv,
-                zip,
-                service,
-                time,
-                comments,
-                subject,
-                sendTo,
-                phone,
-                email
-            })
-            .catch(err => {
-                alert("error " + err);
-                return;
-            });
-
-        alert('Email Sent');
-    }
-
-    setShow(value) {
-        this.setState({ show: value });
-    }
-
-    handleClose = () => this.setShow(false);
-    
-    componentDidMount() {
-        this.setShow(true);
-    }
 
     renderItems(items) {
         return _.map(items, ({ name, value }) => {
@@ -92,25 +28,25 @@ class JumbotronCmp extends Component {
     render() {
         return (
             <>
-                <Button variant="primary" onClick={this.hanldeShow}>
+                <Button variant="primary" onClick={this.props.handleShow}>
                     Schedule Now
                  </Button>
 
-                <Modal show={this.state.show} onHide={this.handleClose}>
+                <Modal show={this.props.show} onHide={this.props.handleClose}>
                     <Modal.Header closeButton>
                         <Modal.Title>Schedule Now</Modal.Title>
                     </Modal.Header>
                     <Modal.Body>
-                        <Form onSubmit={this.handleSubmit}>
+                        <Form onSubmit={this.props.handleSubmitSchedule}>
                             <Form.Row>
                                 <Form.Group as={Col} controlId="modalFName">
                                     <Form.Control
                                         type="text"
                                         placeholder="First Name"
                                         name="fname"
-                                        defaultValue={this.state.fname}
+                                        defaultValue={this.props.fname}
                                         required
-                                        onChange={this.handleChange}
+                                        onChange={this.props.handleChange}
                                     />
                                 </Form.Group>
                                 <Form.Group as={Col} controlId="modalLName">
@@ -118,9 +54,9 @@ class JumbotronCmp extends Component {
                                         type="text"
                                         placeholder="Last Name"
                                         name="lname"
-                                        defaultValue={this.state.lname}
+                                        defaultValue={this.props.lname}
                                         required
-                                        onChange={this.handleChange}
+                                        onChange={this.props.handleChange}
                                     />
                                 </Form.Group>
                             </Form.Row>
@@ -130,9 +66,9 @@ class JumbotronCmp extends Component {
                                         type="text"
                                         placeholder="Phone"
                                         name="phone"
-                                        defaultValue={this.state.phone}
+                                        defaultValue={this.props.phone}
                                         required
-                                        onChange={this.handleChange}
+                                        onChange={this.props.handleChange}
                                     />
                                 </Form.Group>
                                 <Form.Group as={Col} controlId="modalEmail">
@@ -140,9 +76,9 @@ class JumbotronCmp extends Component {
                                         type="text"
                                         placeholder="Email"
                                         name="email"
-                                        defaultValue={this.state.email}
+                                        defaultValue={this.props.email}
                                         required
-                                        onChange={this.handleChange}
+                                        onChange={this.props.handleChange}
                                     />
                                 </Form.Group>
                             </Form.Row>
@@ -153,7 +89,7 @@ class JumbotronCmp extends Component {
                                         placeholder="Street"
                                         name="street"
                                         required
-                                        onChange={this.handleChange}
+                                        onChange={this.props.handleChange}
                                     />
                                 </Form.Group>
                             </Form.Row>
@@ -164,15 +100,15 @@ class JumbotronCmp extends Component {
                                         placeholder="City"
                                         name="city"
                                         required
-                                        onChange={this.handleChange}
+                                        onChange={this.props.handleChange}
                                     />
                                 </Form.Group>
                                 <Form.Group as={Col} controlId="formGridState">
                                     <Form.Control
                                         as="select"
                                         name="stateAbbrv"
-                                        defaultValue={this.state.stateAbbrv}
-                                        onChange={this.handleChange}
+                                        defaultValue={this.props.stateAbbrv}
+                                        onChange={this.props.handleChange}
                                     >
                                         {this.renderItems(states)}
                                     </Form.Control>
@@ -182,9 +118,9 @@ class JumbotronCmp extends Component {
                                         type="text"
                                         placeholder="Zip Code"
                                         name="zip"
-                                        defaultValue={this.state.zip}
+                                        defaultValue={this.props.zip}
                                         required
-                                        onChange={this.handleChange}
+                                        onChange={this.props.handleChange}
                                     />
                                 </Form.Group>
                             </Form.Row>
@@ -193,7 +129,7 @@ class JumbotronCmp extends Component {
                                     <Form.Control
                                         as="select"
                                         name="service"
-                                        onChange={this.handleChange}
+                                        onChange={this.props.handleChange}
                                     >
                                         {this.renderItems(serviceItems)}
                                     </Form.Control>
@@ -202,7 +138,7 @@ class JumbotronCmp extends Component {
                                     <Form.Control
                                         as="select"
                                         name="time"
-                                        onChange={this.handleChange}
+                                        onChange={this.props.handleChange}
                                     >
                                         {this.renderItems(timeFields)}
                                     </Form.Control>
@@ -214,13 +150,13 @@ class JumbotronCmp extends Component {
                                     placeholder="Comments"
                                     name="comments"
                                     rows="3"
-                                    onChange={this.handleChange}
+                                    onChange={this.props.handleChange}
                                 />
                             </Form.Group>
                             <Button
                                 className="modalClose"
                                 variant="secondary"
-                                onClick={this.handleClose}
+                                onClick={this.props.handleClose}
                             >
                                 Cancel
               </Button>
