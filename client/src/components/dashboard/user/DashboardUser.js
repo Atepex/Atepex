@@ -167,7 +167,6 @@ class DashboardUser extends Component {
 
 	render() {
 
-
 		return (
 			<div id="main" style={styling2}>
 				<div id="content">
@@ -280,7 +279,7 @@ class DashboardUser extends Component {
 
 							</Form>
 							<div style={bottomMargin}>
-								<User_invoices />
+								<User_invoices _id={this.state._id}/>
 							</div>
 
 						</div>
