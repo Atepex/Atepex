@@ -280,7 +280,7 @@ class DashboardUser extends Component {
 
 							</Form>
 							<div style={bottomMargin}>
-								<User_invoices />
+								<User_invoices _id={this.state._id}/>
 							</div>
 
 						</div>

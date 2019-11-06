@@ -46,7 +46,7 @@ class User_invoices extends Component {
       
       componentWillReceiveProps(props) {
         this.setState({ userID: props.auth });
-        const _id = props.auth._id;
+        const _id = props._id;
         this.getInvoices(_id);
       }
 
