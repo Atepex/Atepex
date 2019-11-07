@@ -134,7 +134,8 @@ class ClientForm extends Component {
     this.setState({admin: !this.state.admin});
   }
 
-  handleSubmit() {
+  handleSubmit(event) {
+    event.preventDefault();
     const { client, fname, lname, phone, zip, email, admin, recNews } = this.state;
     const { _id } = client;
 
