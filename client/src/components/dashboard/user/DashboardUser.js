@@ -167,7 +167,6 @@ class DashboardUser extends Component {
 
 	render() {
 
-
 		return (
 			<div id="main" style={styling2}>
 				<div id="content">

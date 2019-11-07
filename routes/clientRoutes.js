@@ -1,5 +1,6 @@
 const mongoose = require("mongoose");
 const User = mongoose.model("users");
+const Mailer2 = require('../services/Mailer2');
 
 module.exports = app => {
     app.get("/api/getclients", async (req, res) => {
@@ -41,5 +42,32 @@ module.exports = app => {
           return res.status(404);
         })
       });
+
+      app.get("/api/getnewsclients", async(req, res) => {
+        const users = await User.find({recNews: true});
+        if (users) {
+          res.send(users);
+          return;
+        }
+    
+        res.status(404).send('Not Found');
+      })
+
+      app.post("/api/sendnewsletter", async(req, res) => {
+        const { subject, body, recipients} = req.body;
+        const recipient = recipients;
+        console.log(recipient);
+        const mailer = new Mailer2(body, recipient, subject);
+        
+        try {
+            await mailer.sendMultiple();
+            res.status(200);
+        } catch (err) {
+            console.log(err);
+            res.status(422).send(err);
+        }
+
+      });
+      
 
 };

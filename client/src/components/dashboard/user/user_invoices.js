@@ -26,7 +26,6 @@ class User_invoices extends Component {
 
     constructor(props, context) {
         super(props, context);
-    
         this.state = {
           userID: "",
           invoices: {},
@@ -43,7 +42,8 @@ class User_invoices extends Component {
         console.log(event.target.name);
         this.setState({ [event.target.name]: event.target.value });
       }
-      
+  
+
       componentWillReceiveProps(props) {
         this.setState({ userID: props.auth });
         const _id = props._id;
@@ -131,7 +131,7 @@ class User_invoices extends Component {
 
       
     render() {
-
+       
         return (
             <div>
                 <Table striped hover size="sm" responsive>
